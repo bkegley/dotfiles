@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-" this is a comment
+
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
