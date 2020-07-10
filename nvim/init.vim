@@ -95,6 +95,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Terminal
 nnoremap <leader>t :below new +term<CR> :resize 10<CR> i
 tnoremap <ESC> <C-\><C-N>
-tnoremap jk <C-\><C-N>
+tnoremap jj <C-\><C-N>
 
 vnoremap <leader>fra y:%s/<C-r><C-r>"//g<Left><Left>
