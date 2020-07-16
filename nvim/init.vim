@@ -8,7 +8,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
@@ -20,6 +20,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'preservim/nerdcommenter'
 
 " c#
 Plug 'Omnisharp/omnisharp-vim'
@@ -104,8 +105,8 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-let NERDTreeShowHidden=1
-nnoremap <leader>ne :NERDTreeToggle<CR>
+" let NERDTreeShowHidden=1
+" nnoremap <leader>ne :NERDTreeToggle<CR>
 
 " Window Navigation 
 "==============================================================
@@ -122,14 +123,25 @@ nnoremap <leader>- :vertical resize -5<CR>
 "==============================================================
 
 autocmd BufWritePre *.cs :OmniSharpCodeFormat
-autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql :Prettier
+autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json :Prettier
 
-nmap <leader>g :G<CR>
+nmap <leader>g :Git<SPACE>
 
 " tab navigate completion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" documentation hover
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+if (index(['vim','help'], &filetype) >= 0)
+  execute 'h '.expand('<cword>')
+else
+  call CocAction('doHover')
+endif
+endfunction
 
 " integrated terminal
 nnoremap <leader>t :below new +term<CR> :resize 10<CR> i
