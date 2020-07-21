@@ -8,7 +8,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
@@ -22,6 +22,7 @@ Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'preservim/nerdcommenter'
 
+Plug 'alvan/vim-closetag'
 " c#
 Plug 'Omnisharp/omnisharp-vim'
 
@@ -98,6 +99,9 @@ let g:airline_theme='oceanicnext'
 let $FZF_DEFAULT_COMMAND='rg --files'
 nnoremap <C-p> :Files<CR>
 
+let $FZF_DEFAULT_OPTS='--reverse'
+let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
+
 map <leader><leader> :b#<CR>
 
 " project search/replace
@@ -105,8 +109,8 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-" let NERDTreeShowHidden=1
-" nnoremap <leader>ne :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+nnoremap <leader>ne :NERDTreeToggle<CR>
 
 " Window Navigation 
 "==============================================================
