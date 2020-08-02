@@ -58,14 +58,10 @@ nnoremap <leader>rc :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader><CR> :source ~/.config/nvim/init.vim<CR>
 
 " remove arrow keys
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 inoremap jk <ESC>
 inoremap JK <ESC>
