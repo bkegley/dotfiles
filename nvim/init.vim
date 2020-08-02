@@ -33,8 +33,13 @@ Plug 'mhartington/oceanic-next'
 Plug 'relastle/bluewery'
 Plug 'jaredgorski/fogbell.vim'
 
+Plug 'carstenkj02/dosbox-vim'
+
 " additional plugins
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+
+" to consider
+" Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -64,8 +69,10 @@ inoremap <right> <nop>
 
 inoremap jk <ESC>
 inoremap JK <ESC>
+inoremap jK <ESC>
 vnoremap jk <ESC>
 vnoremap JK <ESC>
+vnoremap jK <ESC>
 
 
 " Theming/Styling
