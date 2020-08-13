@@ -111,6 +111,11 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 let NERDTreeShowHidden=1
 nnoremap <leader>ne :NERDTreeToggle<CR>
 
