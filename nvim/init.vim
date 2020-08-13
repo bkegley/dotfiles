@@ -22,7 +22,6 @@ Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'preservim/nerdcommenter'
 
-Plug 'alvan/vim-closetag'
 " c#
 Plug 'Omnisharp/omnisharp-vim'
 
@@ -159,3 +158,5 @@ tnoremap jk <C-\><C-N>
 vnoremap <leader>ra y:%s/<C-r><C-r>"//g<Left><Left>
 " find/replace in line selection
 xnoremap <leader>ra :s//g<Left><Left>
+
+let g:Omnisharp_server_stdio = 0
