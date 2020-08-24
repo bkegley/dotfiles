@@ -25,6 +25,9 @@ Plug 'preservim/nerdcommenter'
 " c#
 Plug 'Omnisharp/omnisharp-vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " aesthetics
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -135,6 +138,7 @@ nnoremap <leader>- :vertical resize -5<CR>
 
 autocmd BufWritePre *.cs :OmniSharpCodeFormat
 autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json :Prettier
+let g:rustfmt_autosave = 1
 
 nmap <leader>g :Git<SPACE>
 
@@ -153,6 +157,13 @@ else
   call CocAction('doHover')
 endif
 endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " integrated terminal
 nnoremap <leader>t :below new +term<CR> :resize 10<CR> i
