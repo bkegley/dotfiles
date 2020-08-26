@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'airblade/vim-rooter'
 Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
