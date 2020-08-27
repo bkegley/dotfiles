@@ -138,7 +138,7 @@ nnoremap <leader>- :vertical resize -5<CR>
 "==============================================================
 
 autocmd BufWritePre *.cs :OmniSharpCodeFormat
-autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json :Prettier
+autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx :Prettier
 let g:rustfmt_autosave = 1
 
 nmap <leader>g :Git<SPACE>
