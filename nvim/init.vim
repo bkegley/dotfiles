@@ -5,8 +5,14 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+if has('nvim-0.5')
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/telescope.nvim'
+else
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+endif
 Plug 'jremmen/vim-ripgrep'
 Plug 'airblade/vim-rooter'
 Plug 'preservim/nerdtree'
@@ -101,9 +107,13 @@ let g:airline_theme='oceanicnext'
 " Project Navigation 
 "==============================================================
 
-" set fzf to respect .gitignore
-let $FZF_DEFAULT_COMMAND='rg --files'
-nnoremap <C-p> :Files<CR>
+if has('nvim-0.5')
+  nnoremap <C-P> :lua require('telescope.builtin').git_files { shorten_path = true  }<CR>
+else
+  " set fzf to respect .gitignore
+  let $FZF_DEFAULT_COMMAND='rg --files'
+  nnoremap <C-p> :Files<CR>
+endif
 
 let $FZF_DEFAULT_OPTS='--reverse'
 let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
