@@ -222,7 +222,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+space exec rofi -show run -lines 5 -eh 2 -padding 10 -opacity "85" 
 
 set $monPrim "DP-2"
-set $monSec "HDMI-0"
+set $monSec "DP-4"
 
 ###########################################
 # Startup
