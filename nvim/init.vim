@@ -81,13 +81,6 @@ vnoremap jk <ESC>
 vnoremap JK <ESC>
 vnoremap jK <ESC>
 
-inoremap kj <ESC>
-inoremap KJ <ESC>
-inoremap Kj <ESC>
-vnoremap kj <ESC>
-vnoremap KJ <ESC>
-vnoremap kJ <ESC>
-
 " Theming/Styling
 "==============================================================
 
