@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "coc-html": ">=1.2.4",
+    "coc-json": ">=1.2.6",
+    "coc-omnisharp": ">=0.0.26",
+    "coc-rls": ">=1.1.6",
+    "coc-svelte": ">=0.1.1",
+    "coc-tailwindcss": ">=0.6.0",
+    "coc-tsserver": ">=1.5.2"
+  }
+}
