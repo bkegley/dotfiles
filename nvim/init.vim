@@ -56,6 +56,8 @@ let g:tokyonight_style = 'storm'
 
 call plug#end()
 
+lua require 'bkegley'
+
 set noerrorbells
 set smartcase
 set noswapfile
@@ -111,14 +113,15 @@ let g:airline_theme='oceanicnext'
 "==============================================================
 
 if has('nvim-0.5')
-  nnoremap <leader>p :lua require('telescope.builtin').git_files{ shorten_path = true }<CR>
+  nnoremap <C-p> :lua FindFiles()<CR>
   let $FZF_DEFAULT_COMMAND='rg --files'
-  nnoremap <C-p> :Files<CR>
+  nnoremap <leader>p :Files<CR>
 
   let $FZF_DEFAULT_OPTS='--reverse'
   let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
 
-  nnoremap <leader>rg :lua require('telescope.builtin').live_grep()<CR>
+  nnoremap <leader>rg :lua LiveGrep()<CR>
+  nnoremap <leader>ls :lua Buffers()<CR>
 else
   " set fzf to respect .gitignore
   let $FZF_DEFAULT_COMMAND='rg --files'
