@@ -43,8 +43,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhartington/oceanic-next'
 Plug 'relastle/bluewery'
 Plug 'jaredgorski/fogbell.vim'
-
 Plug 'carstenkj02/dosbox-vim'
+Plug 'ghifarit53/tokyonight-vim'
+
+let g:tokyonight_style = 'storm'
 
 " additional plugins
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
@@ -116,7 +118,7 @@ if has('nvim-0.5')
   let $FZF_DEFAULT_OPTS='--reverse'
   let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
 
-  nnoremap <leader>ps :lua require('telescope.builtin').live_grep()<CR>
+  nnoremap <leader>rg :lua require('telescope.builtin').live_grep()<CR>
 else
   " set fzf to respect .gitignore
   let $FZF_DEFAULT_COMMAND='rg --files'
