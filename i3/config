@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set_from_resource $mod i3wm.modkey Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -49,6 +49,7 @@ bindsym $mod+Shift+q kill
 
 # set i3-gaps
 gaps inner 15
+gaps top 40
 
 # change focus
 bindsym $mod+h focus left
@@ -176,20 +177,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $salmon          #ec5f67
-set $teal 	         #62b3b2
-set $white           #ffffff
-set $lightgray       #c0c5ce
-set $gray            #65737e
-set $darkgray        #343d46
-set $black           #1b2b34
+set_from_resource $primary          base08
+set_from_resource $secondary 	      base09
+set_from_resource $white            base07
+set_from_resource $lightgray        base06
+set_from_resource $gray             base03
+set_from_resource $darkgray         base01
+set_from_resource $black            base00
 
 # window colors
 #                       border              background        text            indicator
-client.focused          $teal               $teal             $white          $salmon
-client.unfocused        $lightgray          $lightgray        $black          $salmon
-client.focused_inactive $lightgray          $lightgray        $black          $salmon
-client.urgent           $salmon             $salmon           $white          $salmon
+client.focused          $darkgray           $darkgray         $primary        $secondary
+client.unfocused        $gray               $gray             $black          $secondary
+client.focused_inactive $lightgray          $lightgray        $black          $secondary
+client.urgent           $secondary          $secondary        $white          $secondary
 
 hide_edge_borders both
 focus_follows_mouse no

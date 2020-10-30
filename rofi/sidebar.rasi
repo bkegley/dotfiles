@@ -1,0 +1,7 @@
+window {
+  width: 320px;
+  height: 80%;
+  location: west;
+}
+
+/* vim:ft=css

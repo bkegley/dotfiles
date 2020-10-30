@@ -1,0 +1,37 @@
+! Colors
+
+#define BASE00 #282936 
+#define BASE01 #3a3c4e
+#define BASE02 #4d4f68
+#define BASE03 #626483
+#define BASE04 #62d6e8
+#define BASE05 #e9e9f4
+#define BASE06 #f1f2f8
+#define BASE07 #f7f7fb
+#define BASE08 #ea51b2
+#define BASE09 #b45bcf
+#define BASE0A #00f769
+#define BASE0B #ebff87
+#define BASE0C #a1efe4
+#define BASE0D #62d6e8
+#define BASE0E #b45bcf
+#define BASE0F #00f769
+
+*.foreground:   BASE05
+*.background:   BASE01
+*.base00:       BASE00
+*.base01:       BASE01
+*.base02:       BASE02
+*.base03:       BASE03
+*.base04:       BASE04
+*.base05:       BASE05
+*.base06:       BASE06
+*.base07:       BASE07
+*.base08:       BASE08
+*.base09:       BASE09
+*.base0A:       BASE0A
+*.base0B:       BASE0B
+*.base0C:       BASE0C
+*.base0D:       BASE0D
+*.base0E:       BASE0E
+*.base0F:       BASE0F

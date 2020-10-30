@@ -1,4 +1,1 @@
-! Colors
-
-#define color0 #fff
-
+#include "/home/bryan/.Xresources.d/gloom"

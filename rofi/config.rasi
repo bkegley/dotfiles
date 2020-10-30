@@ -1,0 +1,67 @@
+* {
+  primary:          #ff6f9f; /* base08 */
+  secondary:        #2de0a7; /* base0D */
+  background:       #212136; /* base00 */
+  background-alt:   #292a44; /* base01 */
+  background-light: #626483; /* base03 */
+  foreground:       #d7dae0; /* base06 */
+  foreground-alt:   #f1eff7; /* base07 */
+}
+
+* {
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+  border-color: @background-light;
+}
+
+window {
+  border: 0px;
+  border-radius: 0%;
+  padding: @menu-window-padding;
+  children: [ horibox ];
+}
+
+horibox {
+  orientation: vertical;
+  children: [ inputbar, listview ];
+}
+
+inputbar {
+  border: 0 0 1px 0;
+  children: [ prompt, entry ];
+}
+
+prompt {
+  padding: 16px;
+  border: 0 1px 0 0;
+  text-color: @primary;
+}
+
+entry {
+  width: 100%;
+  margin: 6px;
+  border: 0 1px 0 0;
+  text-color: @secondary;
+}
+
+listview {
+  margin: 0 0 -1px 0;
+}
+
+entry {
+  expand: false;
+  padding: 10px;
+}
+
+element {
+  margin: 0 0 -1px 0;
+  border: 0 0 1px 0;
+  padding: 6px 16px;
+}
+
+element.selected {
+  background-color: @background-alt;
+}
+
+/* vim:ft=css
