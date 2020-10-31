@@ -50,3 +50,4 @@ ln -sf $path/polybar/scripts/* $HOME/.config/polybar/scripts/
 [ ! -d $HOME/.config/rofi ] && mkdir -p $HOME/.config/rofi
 ln -sf $path/rofi/* $HOME/.config/rofi
 
+ln -sf $path/tmux/tmux.conf $HOME/.tmux.conf
