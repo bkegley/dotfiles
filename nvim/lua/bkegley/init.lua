@@ -11,7 +11,7 @@ local default_config = {
 
 telescope.setup({defaults = default_config})
 
-local theme = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .5, shorten_path = true }
+local theme = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .65, shorten_path = true }
 
 function FindFiles()
   require'telescope.builtin'.find_files(theme) 
