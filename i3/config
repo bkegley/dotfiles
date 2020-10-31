@@ -230,8 +230,9 @@ set $monSec "DP-4"
 ##########################################
 
 # background
-set $wallpaper "~/Pictures/mtn-clouds.jpg"
-exec_always feh --bg-fill $wallpaper
+set $wallpaper "~/Pictures/Wallpapers/night.png"
+exec_always --no-startup-id feh --bg-fill $wallpaper
+exec_always --no-startup-id compton
 
 workspace $ws9 output $monPrim
 workspace $ws10 output $monSec

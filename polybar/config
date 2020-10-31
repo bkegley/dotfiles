@@ -245,7 +245,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = custom/script
-exec = $HOME/repos/personal/dotfiles/polybar/scripts/battery.sh
+exec = $HOME/.config/polybar/scripts/battery.sh
 interval = 60
 
 ;[module/battery]
@@ -284,7 +284,7 @@ animation-discharging-framerate = 750
 [module/audio-output]
 type = custom/text
 content = x
-click-left = $HOME/repos/personal/dotfiles/polybar/scripts/audio-menu.sh
+click-left = $HOME/.config/polybar/scripts/audio-menu.sh
 
 [module/powermenu]
 type = custom/menu

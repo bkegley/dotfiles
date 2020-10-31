@@ -40,18 +40,14 @@ prompt {
 
 entry {
   width: 100%;
-  margin: 6px;
+  margin: 0 -1px;
+  padding: 16px;
   border: 0 1px 0 0;
   text-color: @secondary;
 }
 
 listview {
   margin: 0 0 -1px 0;
-}
-
-entry {
-  expand: false;
-  padding: 10px;
 }
 
 element {

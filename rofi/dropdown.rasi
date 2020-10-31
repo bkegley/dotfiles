@@ -1,9 +1,3 @@
-window {
-  width: 25%;
-  height: 26%;
-  location: northeast;
-}
-
 horibox {
   children: [ listview ];
 }

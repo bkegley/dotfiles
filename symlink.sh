@@ -5,10 +5,10 @@ path=$(pwd)
 # ========
 # Xorg
 # ========
-[ ! -d $HOME/.config/.Xresources.d ] && mkdir -p $HOME/.config/.Xresources.d
-ln -sf $path/.Xresources.d/* $HOME/.config/.Xresources.d
-ln -sf $path/.Xresources $HOME/.config/.Xresources
-ln -sf $path/.xinitrc $HOME/.config/.xinitrc
+[ ! -d $HOME/.config/.Xresources.d ] && mkdir -p $HOME/.Xresources.d
+ln -sf $path/.Xresources.d/* $HOME/.Xresources.d
+ln -sf $path/.Xresources $HOME/.Xresources
+ln -sf $path/.xinitrc $HOME/.xinitrc
 
 # ========
 # Terminal
