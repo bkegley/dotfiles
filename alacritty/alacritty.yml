@@ -1,6 +1,6 @@
 window:
   decorations: full
-  title: Terminal 
+  title: Alacritty 
   dynamic_title: true
   class:
     instance: Alacritty
