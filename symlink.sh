@@ -50,4 +50,19 @@ ln -sf $path/polybar/scripts/* $HOME/.config/polybar/scripts/
 [ ! -d $HOME/.config/rofi ] && mkdir -p $HOME/.config/rofi
 ln -sf $path/rofi/* $HOME/.config/rofi
 
+# ========
+# Dunst
+# ========
+[ ! -d $HOME/.config/dunst ] && mkdir -p $HOME/.config/dunst
+ln -sf $path/dunst/* $HOME/.config/dunst
+
+# ========
+# tmux
+# ========
 ln -sf $path/tmux/tmux.conf $HOME/.tmux.conf
+
+# ========
+# Themes
+# ========
+[ ! -d $HOME/themes ] && mkdir -p $HOME/themes
+ln -sf $path/themes/* $HOME/themes

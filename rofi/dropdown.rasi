@@ -2,4 +2,8 @@ horibox {
   children: [ listview ];
 }
 
+element {
+  padding: 4px 4px;
+}
+
 /* vim:ft=css
