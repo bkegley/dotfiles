@@ -6,7 +6,7 @@ path=$(pwd)
 # Xorg
 # ========
 [ ! -d $HOME/.config/.Xresources.d ] && mkdir -p $HOME/.Xresources.d
-ln -sf $path/.Xresources.d/* $HOME/.Xresources.d
+ln -sf $path/overrides $HOME/.Xresources.d/overrides
 ln -sf $path/.Xresources $HOME/.Xresources
 ln -sf $path/.xinitrc $HOME/.xinitrc
 
