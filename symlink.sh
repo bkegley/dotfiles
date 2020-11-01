@@ -65,4 +65,4 @@ ln -sf $path/tmux/tmux.conf $HOME/.tmux.conf
 # Themes
 # ========
 [ ! -d $HOME/themes ] && mkdir -p $HOME/themes
-ln -sf $path/themes/* $HOME/themes
+ln -sf $path/themes/* $HOME/themes/
