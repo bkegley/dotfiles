@@ -9,12 +9,11 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'nvim-lua/diagnostic-nvim'
+
 if has('nvim-0.5')
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-lua/telescope.nvim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
 else
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -57,12 +56,8 @@ let g:tokyonight_style = 'storm'
 " additional plugins
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
-" to consider
-" Plug 'justinmk/vim-sneak'
-
 call plug#end()
 
-lua require 'bkegley'
 
 set noerrorbells
 set smartcase
@@ -110,49 +105,53 @@ set nowrap
 set noshowmode
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
-
 set background=dark
 colorscheme OceanicNext
 let g:airline_theme='oceanicnext'
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+"
+
+
 
 " LSP
 " ========
+
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gt   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> <leader>af <cmd>lua vim.lsp.buf.code_action()<CR>
+
+nnoremap <silent> gw    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
+" tab navigate completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+
+let g:completion_matching_strategy_list = ['substring', 'exact', 'fuzzy', 'all']
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_insert_delay = 1
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+let g:completion_chain_complete_list = [
+  \{'complete_items': ['lsp', 'snippet']},
+  \{'mode': '<c-p>'},
+  \{'mode': '<c-n>'},
+\]
 "
 "nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-"
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-" documentation hover
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-"function! s:show_documentation()
-"if (index(['vim','help'], &filetype) >= 0)
-  "execute 'h '.expand('<cword>')
-"else
-  "call CocAction('doHover')
-"endif
-"endfunction
 
 " Use <c-space> to trigger completion.
 "if has('nvim')
@@ -177,21 +176,17 @@ set statusline+=\ %{LspStatus()}
 
 if has('nvim-0.5')
   nnoremap <C-p> :lua FindFiles()<CR>
-  let $FZF_DEFAULT_COMMAND='rg --files'
-  nnoremap <leader>p :Files<CR>
-
+  nnoremap <leader>ps :lua LiveGrep()<CR>
+  nnoremap <leader>pw :lua GrepString(vim.fn.expand("<cword>"))<CR>
+  nnoremap <leader>ls :lua Buffers()<CR>
+  nnoremap <leader>dot :lua Dotfiles()<CR>
+else
   let $FZF_DEFAULT_OPTS='--reverse'
   let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
-
-  nnoremap <leader>rg :lua LiveGrep()<CR>
-  nnoremap <leader>ls :lua Buffers()<CR>
-else
   " set fzf to respect .gitignore
   let $FZF_DEFAULT_COMMAND='rg --files'
   nnoremap <C-p> :Files<CR>
 
-  let $FZF_DEFAULT_OPTS='--reverse'
-  let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
 
   " project search/replace
   nnoremap <leader>ps :Rg<SPACE>
@@ -226,20 +221,6 @@ let g:rustfmt_autosave = 1
 
 nmap <leader>g :Git<SPACE>
 
-" tab navigate completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-
-" integrated terminal
-nnoremap <leader>t :below new +term<CR> :resize 10<CR> i
-tnoremap <ESC> <C-\><C-N>
-tnoremap jk <C-\><C-N>
-
-" replace all occurences of selection
-vnoremap <leader>ra y:%s/<C-r><C-r>"//g<Left><Left>
-" find/replace in line selection
-xnoremap <leader>ra :s//g<Left><Left>
-
 let g:Omnisharp_server_stdio = 0
+
+lua require 'bkegley'
