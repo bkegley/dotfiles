@@ -11,6 +11,12 @@ ln -sf $path/.Xresources $HOME/.Xresources
 ln -sf $path/.xinitrc $HOME/.xinitrc
 
 # ========
+# Bash
+# ========
+ln -sf $path/.bashrc $HOME/.bashrc
+ln -sf $path/starship/starship.toml $HOME/.config/starship.toml
+
+# ========
 # Terminal
 # ========
 [ ! -d $HOME/.config/alacritty ] && mkdir -p $HOME/.config/alacritty

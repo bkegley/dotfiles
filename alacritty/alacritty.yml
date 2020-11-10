@@ -1,3 +1,5 @@
+# WIP:
+# These are mainly defaults at this point
 window:
   decorations: full
   title: Alacritty 
@@ -27,11 +29,11 @@ font:
   size: 11.0
   
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
+  primary:
+    background: '#212136' #base00
+    foreground: '#d7dae0' #base06
 
     # Bright and dim foreground colors
     #
