@@ -4,17 +4,21 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-"if has('nvim-0.5')
+"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/lsp-status.nvim'
+Plug 'nvim-lua/diagnostic-nvim'
+if has('nvim-0.5')
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-lua/telescope.nvim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-"else
-  "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  "Plug 'junegunn/fzf.vim'
-"endif
+else
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+endif
 Plug 'jremmen/vim-ripgrep'
 Plug 'airblade/vim-rooter'
 Plug 'preservim/nerdtree'
@@ -38,13 +42,15 @@ Plug 'Omnisharp/omnisharp-vim'
 Plug 'rust-lang/rust.vim'
 
 " aesthetics
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'mhartington/oceanic-next'
 Plug 'relastle/bluewery'
 Plug 'jaredgorski/fogbell.vim'
 Plug 'carstenkj02/dosbox-vim'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
 let g:tokyonight_style = 'storm'
 
@@ -66,6 +72,8 @@ set undodir=~/.config/nvim/undodir
 set undofile
 set incsearch
 set hidden
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
 let mapleader = " "
 
@@ -108,7 +116,62 @@ set background=dark
 colorscheme OceanicNext
 let g:airline_theme='oceanicnext'
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
+" LSP
+" ========
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gt   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_insert_delay = 1
+"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+"
+"nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+"
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+" documentation hover
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+"function! s:show_documentation()
+"if (index(['vim','help'], &filetype) >= 0)
+  "execute 'h '.expand('<cword>')
+"else
+  "call CocAction('doHover')
+"endif
+"endfunction
+
+" Use <c-space> to trigger completion.
+"if has('nvim')
+  "inoremap <silent><expr> <c-space> coc#refresh()
+"else
+  "inoremap <silent><expr> <c-@> coc#refresh()
+"endif
+"
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+  return ''
+endfunction
+
+set statusline+=\ %{LspStatus()}
+
+"
 " Project Navigation 
 "==============================================================
 
@@ -137,12 +200,7 @@ endif
 
 
 map <leader><leader> :b#<CR>
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 let g:NERDTreeShowHidden=1
 let g:NERDTreeWinPos = "right"
@@ -173,23 +231,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" documentation hover
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-if (index(['vim','help'], &filetype) >= 0)
-  execute 'h '.expand('<cword>')
-else
-  call CocAction('doHover')
-endif
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " integrated terminal
 nnoremap <leader>t :below new +term<CR> :resize 10<CR> i

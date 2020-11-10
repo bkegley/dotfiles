@@ -45,6 +45,12 @@ ln -sf $path/polybar/launch.sh $HOME/.config/polybar/launch.sh
 ln -sf $path/polybar/scripts/* $HOME/.config/polybar/scripts/
 
 # ========
+# Compton
+# ========
+[ ! -d $HOME/.config/compton ] && mkdir -p $HOME/.config/compton
+ln -sf $path/compton/* $HOME/.config/compton
+
+# ========
 # Rofi
 # ========
 [ ! -d $HOME/.config/rofi ] && mkdir -p $HOME/.config/rofi
