@@ -11,4 +11,6 @@ alias ls='ls --color=auto'
 source ~/.bash_aliases
 [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
+export EDITOR=nvim
+
 eval "$(starship init bash)"
