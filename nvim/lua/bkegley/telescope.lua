@@ -1,29 +1,16 @@
 local telescope = require 'telescope'
 local themes = require 'telescope.themes'
 
-local default_config = {
-  shorten_path = true,
-  layout_strategy = 'vertical',
-  layout_config = {
-    --preview_height = 0.4
-  }
-}
-
+local default_config = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .65, shorten_path = true }
 
 telescope.setup({defaults = default_config})
 
-local theme = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .65, shorten_path = true }
-
 function FindFiles()
-  require'telescope.builtin'.find_files(theme)
+  require'telescope.builtin'.find_files()
 end
 
---Not currently working as it sets preview path to cwd (dotfiles dir)
 function Dotfiles()
   local config = {}
-  for k,v in pairs(theme) do
-    config[k] = v
-  end
 
   if (os.getenv('DOTFILES_GIT_DIR')) then
     config.cwd = os.getenv('DOTFILES_GIT_DIR')
@@ -35,18 +22,17 @@ function Dotfiles()
 end
 
 function LiveGrep()
-  require'telescope.builtin'.live_grep(theme)
+  require'telescope.builtin'.live_grep()
 end
 
 function GrepString(search)
-  local config = {}
-  for k,v in pairs(theme) do
-    config[k] = v
-  end
-  config.search = search
+  local config = {
+    search = search
+  }
+
   require'telescope.builtin'.grep_string(config)
 end
 
 function Buffers()
-  require'telescope.builtin'.buffers(theme)
+  require'telescope.builtin'.buffers()
 end
