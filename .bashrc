@@ -9,6 +9,6 @@ alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
 source ~/.bash_aliases
-source /usr/share/nvm/init-nvm.sh
+[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 eval "$(starship init bash)"
