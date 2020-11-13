@@ -25,7 +25,6 @@ function Dotfiles()
     config[k] = v
   end
 
-  config.cwd = "~/.config"
   if (os.getenv('DOTFILES_GIT_DIR')) then
     config.cwd = os.getenv('DOTFILES_GIT_DIR')
   else
