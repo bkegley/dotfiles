@@ -1,3 +1,0 @@
-#define MODKEY Mod1
-i3wm.modkey:    MODKEY
-
