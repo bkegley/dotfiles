@@ -8,9 +8,11 @@
 alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
-source ~/.bash_aliases
-[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
-
 export EDITOR=nvim
+
+source ~/.bash_aliases
+[[ -f ~/.bash_local ]] && source ~/.bash_local 
+
+[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 eval "$(starship init bash)"

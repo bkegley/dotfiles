@@ -13,7 +13,9 @@ ln -sf $path/.xinitrc $HOME/.xinitrc
 # ========
 # Bash
 # ========
-ln -sf $path/.bashrc $HOME/.bashrc
+ln -sf $path/bash/.bashrc $HOME/.bashrc
+ln -sf $path/bash/.bash_aliases $HOME/.bash_aliases
+[ -f $path/bash/.bash_local ] && ln -sf $path/bash/.bash_local $HOME/.bash_local
 ln -sf $path/starship/starship.toml $HOME/.config/starship.toml
 
 # ========
