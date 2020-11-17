@@ -50,6 +50,8 @@ Plug 'carstenkj02/dosbox-vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
+Plug 'nvim-treesitter/playground'
+
 let g:tokyonight_style = 'storm'
 
 " additional plugins

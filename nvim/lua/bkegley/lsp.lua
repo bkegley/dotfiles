@@ -1,4 +1,4 @@
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 local nvim_completion = require'completion'
 
 local lsp_status = require'lsp-status'
@@ -16,14 +16,15 @@ local function setup_diagnostics()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       underline = true,
-      virtual_text = true,
+      virtual_text = false,
       signs = true,
       update_in_insert = true,
     }
   )
 
-  key_mapper('n', '<leader>gn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
-  key_mapper('n', '<leader>gp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
+  key_mapper('n', '<leader>dn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
+  key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
+  key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 end
 
 local function default_on_attach(client)
@@ -49,5 +50,3 @@ nvim_lsp.tsserver.setup(default_config)
 nvim_lsp.sumneko_lua.setup(default_config)
 nvim_lsp.vimls.setup(default_config)
 nvim_lsp.yamlls.setup(default_config)
-
-
