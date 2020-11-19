@@ -1,15 +1,9 @@
 local nvim_lsp = require'lspconfig'
 local nvim_completion = require'completion'
+local utils = require'bkegley.utils'
 
 local lsp_status = require'lsp-status'
 lsp_status.register_progress()
-
--- Thanks TJ!
-local key_mapper = function(mode, key, result)
-  -- uses nvim_buf_set_keymap instead of nvim_set_keymap to allow buftype specific keymaps
-  -- use vim.api.nvim_buf_get_option(0, 'filetype') to check filetype
-  vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
-end
 
 -- Diagnostics
 local function setup_diagnostics()
@@ -21,10 +15,9 @@ local function setup_diagnostics()
       update_in_insert = true,
     }
   )
-
-  key_mapper('n', '<leader>dn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
-  key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
-  key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+  utils.key_mapper('n', '<leader>dn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
+  utils.key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
+  utils.key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 end
 
 local function default_on_attach(client)

@@ -5,6 +5,7 @@ require'nvim-treesitter.configs'.setup {
     disable = { "c", "rust" },
   },
   playground = {
-    enable = true
+    enable = true,
+    updatetime = 25
   }
 }
