@@ -29,7 +29,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'preservim/nerdcommenter'
 
@@ -41,18 +40,21 @@ Plug 'rust-lang/rust.vim'
 
 " aesthetics
 Plug 'nvim-treesitter/nvim-treesitter'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+
+Plug 'tjdevries/colorbuddy.nvim'
 Plug 'mhartington/oceanic-next'
 Plug 'relastle/bluewery'
 Plug 'jaredgorski/fogbell.vim'
 Plug 'carstenkj02/dosbox-vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'rockerBOO/boo-colorscheme-nvim', { 'branch': 'main' }
 
 Plug 'nvim-treesitter/playground'
 
 let g:tokyonight_style = 'storm'
+
+"let g:polyglot_disabled =  ['graphql']
 
 " additional plugins
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
@@ -118,10 +120,8 @@ if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
 "
-
-
-
 " LSP
 " ========
 
@@ -213,6 +213,8 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 
+tnoremap jk <c-\><c-n>
+
 
 " Misc 
 "==============================================================
@@ -224,5 +226,11 @@ let g:rustfmt_autosave = 1
 nmap <leader>g :Git<SPACE>
 
 let g:Omnisharp_server_stdio = 0
+
+map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+  \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+nnoremap <leader>hhi :TSHighlightCapturesUnderCursor<CR>
 
 lua require 'bkegley'
