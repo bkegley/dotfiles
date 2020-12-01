@@ -40,8 +40,10 @@ Plug 'rust-lang/rust.vim'
 
 " aesthetics
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 
 Plug 'tjdevries/colorbuddy.nvim'
+Plug 'bkegley/gloombuddy'
 Plug 'mhartington/oceanic-next'
 Plug 'relastle/bluewery'
 Plug 'jaredgorski/fogbell.vim'
@@ -50,17 +52,12 @@ Plug 'ghifarit53/tokyonight-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'rockerBOO/boo-colorscheme-nvim', { 'branch': 'main' }
 
-Plug 'nvim-treesitter/playground'
-
 let g:tokyonight_style = 'storm'
-
-"let g:polyglot_disabled =  ['graphql']
 
 " additional plugins
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 call plug#end()
-
 
 set noerrorbells
 set smartcase
@@ -109,7 +106,7 @@ set noshowmode
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-colorscheme OceanicNext
+colorscheme gloombuddy
 let g:airline_theme='oceanicnext'
 
 if (has("termguicolors"))
