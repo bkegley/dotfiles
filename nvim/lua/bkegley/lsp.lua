@@ -1,8 +1,7 @@
 local nvim_lsp = require'lspconfig'
 local nvim_completion = require'completion'
-local utils = require'bkegley.utils'
-
 local lsp_status = require'lsp-status'
+
 lsp_status.register_progress()
 
 -- Diagnostics
@@ -15,12 +14,10 @@ local function setup_diagnostics()
       update_in_insert = true,
     }
   )
-  utils.key_mapper('n', '<leader>dn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
-  utils.key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
-  utils.key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 end
 
 local function default_on_attach(client)
+  print('Attaching to ' .. client.name)
   nvim_completion.on_attach(client)
   lsp_status.on_attach(client)
 

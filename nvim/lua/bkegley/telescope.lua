@@ -21,6 +21,10 @@ function Dotfiles()
   require'telescope.builtin'.find_files(config)
 end
 
+function HelpTags()
+  require'telescope.builtin'.help_tags()
+end
+
 function LiveGrep()
   require'telescope.builtin'.live_grep()
 end

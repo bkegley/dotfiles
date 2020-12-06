@@ -29,6 +29,7 @@ ln -sf $path/alacritty/* $HOME/.config/alacritty/
 # ========
 [ ! -d $HOME/.config/nvim ] && mkdir -p $HOME/.config/nvim
 ln -sf $path/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -sf $path/nvim/init.lua $HOME/.config/nvim/init.lua
 [ ! -d $HOME/.config/nvim/lua ] && mkdir -p $HOME/.config/nvim/lua
 [ ! -d $HOME/.config/nvim/lua/bkegley ] && mkdir -p $HOME/.config/nvim/lua/bkegley
 ln -sf $path/nvim/lua/bkegley/* $HOME/.config/nvim/lua/bkegley

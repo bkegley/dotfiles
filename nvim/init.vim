@@ -1,64 +1,6 @@
 "==============================================================
 " Vim Cofiguration
 "==============================================================
-
-call plug#begin('~/.vim/plugged')
-
-"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/lsp-status.nvim'
-
-if has('nvim-0.5')
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-lua/telescope.nvim'
-else
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-endif
-Plug 'jremmen/vim-ripgrep'
-Plug 'airblade/vim-rooter'
-Plug 'preservim/nerdtree'
-Plug 'mbbill/undotree'
-Plug 'tpope/vim-fugitive'
-Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
-
-" js/ts
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'preservim/nerdcommenter'
-
-" c#
-Plug 'Omnisharp/omnisharp-vim'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-
-" aesthetics
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/playground'
-
-Plug 'tjdevries/colorbuddy.nvim'
-Plug 'bkegley/gloombuddy'
-Plug 'mhartington/oceanic-next'
-Plug 'relastle/bluewery'
-Plug 'jaredgorski/fogbell.vim'
-Plug 'carstenkj02/dosbox-vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'rockerBOO/boo-colorscheme-nvim', { 'branch': 'main' }
-
-let g:tokyonight_style = 'storm'
-
-" additional plugins
-"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-
-call plug#end()
-
 set noerrorbells
 set smartcase
 set noswapfile
@@ -149,16 +91,6 @@ let g:completion_chain_complete_list = [
   \{'mode': '<c-p>'},
   \{'mode': '<c-n>'},
 \]
-"
-"nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-
-" Use <c-space> to trigger completion.
-"if has('nvim')
-  "inoremap <silent><expr> <c-space> coc#refresh()
-"else
-  "inoremap <silent><expr> <c-@> coc#refresh()
-"endif
-"
 
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
@@ -177,6 +109,7 @@ if has('nvim-0.5')
   nnoremap <C-p> :lua FindFiles()<CR>
   nnoremap <leader>ps :lua LiveGrep()<CR>
   nnoremap <leader>pw :lua GrepString(vim.fn.expand("<cword>"))<CR>
+  nnoremap <leader>fh :lua HelpTags()<CR>
   nnoremap <leader>ls :lua Buffers()<CR>
   nnoremap <leader>dot :lua Dotfiles()<CR>
 else

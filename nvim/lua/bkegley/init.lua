@@ -1,4 +1,5 @@
 require'bkegley.lsp'
+require'bkegley.mappings'
 require'bkegley.telescope'
 require'bkegley.treesitter'
-require'bkegley.mappings'
+require'bkegley.plugins'
