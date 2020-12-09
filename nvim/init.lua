@@ -1,38 +1,40 @@
 --------------------------------------------------------------
 -- Vim Cofiguration
 --------------------------------------------------------------
+local vim = vim
 
 vim.g.mapleader = ' '
-vim.g.syntax = 'on'
-vim.g.colorscheme = 'gloombuddy'
+vim.g.colors_name = 'gloombuddy'
 
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
 
---syntax on
+o.termguicolors = true
+o.syntax = 'on'
 o.errorbells = false
 o.smartcase = true
 o.showmode = false
 bo.swapfile = false
---o.backup = false --default
---o.undodir = '~/.config/nvim/undodir' --default
-bo.undofile = true
---o.incsearch = true --default
+o.backup = false
+o.undodir = vim.fn.stdpath('config') .. '/undodir'
+o.undofile = true
+o.incsearch = true
 o.hidden = true
 o.completeopt='menuone,noinsert,noselect'
-wo.relativenumber = true
---set shortmess+=c
 bo.autoindent = true
 bo.smartindent = true
 
-bo.tabstop = 2
-bo.softtabstop = 2
-bo.shiftwidth = 2
-bo.expandtab = true
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.expandtab = true
 wo.number = true -- display line numbers
 wo.relativenumber = true -- display relative line numbers
 wo.wrap = false
 
-require'bkegley'
 
+vim.g.NERDTreeShowHidden = 1
+vim.g.NERDTreeWinPos = "right"
+
+require'bkegley'

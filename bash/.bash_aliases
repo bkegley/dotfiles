@@ -11,6 +11,7 @@ alias gitpushdot='git --git-dir=$DOTFILES_GIT_DIR/.git/ --work-tree=$DOTFILES_GI
 alias v='nvim'
 
 alias lsla='ls -la'
+alias cl='clear'
 
 # Docker
 alias dc='docker-compose'

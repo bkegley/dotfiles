@@ -5,11 +5,14 @@ local default_config = themes.get_dropdown{ win_blend = 10, results_height = .25
 
 telescope.setup({defaults = default_config})
 
-function FindFiles()
+local M = {}
+
+
+M.find_files = function()
   require'telescope.builtin'.find_files()
 end
 
-function Dotfiles()
+M.dotfiles = function()
   local config = {}
 
   if (os.getenv('DOTFILES_GIT_DIR')) then
@@ -21,15 +24,15 @@ function Dotfiles()
   require'telescope.builtin'.find_files(config)
 end
 
-function HelpTags()
+M.help_tags = function()
   require'telescope.builtin'.help_tags()
 end
 
-function LiveGrep()
+M.live_grep = function()
   require'telescope.builtin'.live_grep()
 end
 
-function GrepString(search)
+M.grep_string = function(search)
   local config = {
     search = search
   }
@@ -37,6 +40,8 @@ function GrepString(search)
   require'telescope.builtin'.grep_string(config)
 end
 
-function Buffers()
+M.buffers = function()
   require'telescope.builtin'.buffers()
 end
+
+return M
