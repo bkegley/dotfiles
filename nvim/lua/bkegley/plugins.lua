@@ -37,9 +37,6 @@ return require'packer'.startup(function()
   use {'prettier/vim-prettier', run = 'yarn install' }
   use 'preservim/nerdcommenter'
 
-  -- c#
-  use 'Omnisharp/omnisharp-vim'
-
   -- rs
   use 'rust-lang/rust.vim'
 
@@ -57,4 +54,4 @@ return require'packer'.startup(function()
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use {'rockerBOO/boo-colorscheme-nvim', branch = 'main' }
   end
-  )
+)

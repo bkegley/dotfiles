@@ -1,6 +1,4 @@
 --------------------------------------------------------------
--- Vim Cofiguration
---------------------------------------------------------------
 local vim = vim
 
 vim.g.mapleader = ' '
@@ -31,10 +29,13 @@ o.shiftwidth = 2
 o.expandtab = true
 wo.number = true -- display line numbers
 wo.relativenumber = true -- display relative line numbers
+wo.signcolumn = 'yes'
 wo.wrap = false
 
 
 vim.g.NERDTreeShowHidden = 1
 vim.g.NERDTreeWinPos = "right"
+
+vim.g.Omnisharp_server_stdio = 0
 
 require'bkegley'
