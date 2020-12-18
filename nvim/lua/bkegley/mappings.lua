@@ -29,7 +29,6 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
   utils.key_mapper('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
 
-
   -- Telescope
   utils.key_mapper('n', '<C-p>', ':lua require"bkegley.telescope".find_files()<CR>')
   utils.key_mapper('n', '<leader>fs', ':lua require"bkegley.telescope".live_grep()<CR>')

@@ -12,9 +12,17 @@ end
 
 vim.cmd('packadd packer.nvim')
 
-return require'packer'.startup(function()
+local packer = require'packer'
+local util = require'packer.util'
+
+print(util.join_paths(vim.fn.stdpath('data'), 'site', 'pack'))
+
+packer.init({
+  package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
+})
+
+return packer.startup(function()
   local use = use
-  -- use 'neoclide/coc.nvim', { 'branch': 'release' }
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'nvim-lua/lsp-status.nvim'
