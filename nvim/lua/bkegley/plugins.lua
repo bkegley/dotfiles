@@ -15,8 +15,6 @@ vim.cmd('packadd packer.nvim')
 local packer = require'packer'
 local util = require'packer.util'
 
-print(util.join_paths(vim.fn.stdpath('data'), 'site', 'pack'))
-
 packer.init({
   package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
 })

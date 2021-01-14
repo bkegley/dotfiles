@@ -4,7 +4,7 @@ local utils = require'bkegley.utils'
 local setup_mappings = function()
   -- Temp commands
   vim.cmd[[autocmd BufWritePre *.cs :lua vim.lsp.buf.formatting_sync()]]
-  vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx :Prettier]]
+  vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
 
   -- Completion
   vim.cmd[[inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"]]
@@ -35,7 +35,9 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>fw', ':lua require"bkegley.telescope".grep_string(vim.fn.expand("<cword>"))<CR>')
   utils.key_mapper('n', '<leader>fh', ':lua require"bkegley.telescope".help_tags()<CR>')
   utils.key_mapper('n', '<leader>fb', ':lua require"bkegley.telescope".buffers()<CR>')
+  utils.key_mapper('n', '<leader>fq', ':lua require"bkegley.telescope".quickfix()<CR>')
   utils.key_mapper('n', '<leader>fd', ':lua require"bkegley.telescope".dotfiles()<CR>')
+
 
   -- Nerdtree
   utils.key_mapper('n', '<leader>ne', ':NERDTreeToggle<CR>')
