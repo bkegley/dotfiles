@@ -24,6 +24,7 @@ return packer.startup(function()
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'nvim-lua/lsp-status.nvim'
+  use 'anott03/nvim-lspinstall'
 
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'

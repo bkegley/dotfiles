@@ -6,6 +6,7 @@ local setup_mappings = function()
   vim.cmd[[autocmd BufWritePre *.cs :lua vim.lsp.buf.formatting_sync()]]
   vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
 
+  utils.key_mapper('n', '<leader><C-W>', ':write | edit | TSBufEnable highlight<CR><CR>')
   -- Completion
   vim.cmd[[inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"]]
   vim.cmd[[inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"]]
@@ -71,8 +72,6 @@ local setup_mappings = function()
   utils.key_mapper('v', 'JK', '<ESC>')
   utils.key_mapper('v', 'jK', '<ESC>')
   utils.key_mapper('t', 'jk', '<c-/><c-n>')
-  utils.key_mapper('n', '<leader>bd', ':%bd|e#<CR>')
-  utils.key_mapper('n', '<leader>bd', ':%bd|e#<CR>')
   utils.key_mapper('n', '<leader>bd', ':%bd|e#<CR>')
 
   utils.key_mapper('n', '<leader>bd', ':%bd|e#<CR>')
