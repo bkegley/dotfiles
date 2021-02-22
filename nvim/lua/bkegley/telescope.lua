@@ -3,6 +3,8 @@ local telescope = require'telescope'
 local themes = require'telescope.themes'
 local builtin = require'telescope.builtin'
 local actions = require'telescope.actions'
+local previewers = require'telescope.previewers'
+
 
 local custom_actions = {}
 
@@ -72,7 +74,11 @@ local defaults = {
 local theme_defaults = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .65, shorten_path = true }
 
 telescope.setup({
-  defaults = vim.tbl_extend('error', theme_defaults, defaults)
+  defaults = vim.tbl_extend('error', theme_defaults, defaults, {
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new
+  })
 })
 
 local M = {}
