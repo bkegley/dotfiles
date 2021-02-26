@@ -5,23 +5,19 @@ local lsp_status = require'lsp-status'
 lsp_status.register_progress()
 
 -- Diagnostics
-local function setup_diagnostics()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = false,
-      signs = true,
-      update_in_insert = true,
-    }
-  )
-end
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+  }
+)
 
 local function default_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
   lsp_status.on_attach(client)
-
-  setup_diagnostics()
 end
 
 local default_config = {
