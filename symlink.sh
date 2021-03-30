@@ -11,6 +11,11 @@ ln -sf $path/.Xresources $HOME/.Xresources
 ln -sf $path/.xinitrc $HOME/.xinitrc
 
 # ========
+# Git
+# ========
+ln -sf $path/.gitconfig $HOME/.gitconfig
+
+# ========
 # Bash
 # ========
 ln -sf $path/bash/.bashrc $HOME/.bashrc
