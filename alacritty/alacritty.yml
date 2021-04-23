@@ -15,18 +15,18 @@ scrolling:
 
 font:
   normal:
-    family: monospace
+    family: Source Code Pro
     style: Regular
   bold:
-    family: monospace
+    family: Source Code Pro
     style: Bold
   italic:
-    family: monospace
+    family: Source Code Pro
     style: Italic
   bold_italic:
-    family: monospace
+    family: Source Code Pro
     style: Bold Italic
-  size: 11.0
+  size: 16.0
   
 # Colors (Tomorrow Night)
 colors:

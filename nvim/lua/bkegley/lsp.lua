@@ -29,7 +29,14 @@ local pid = vim.fn.getpid()
 local cache_path = vim.fn.stdpath('cache')
 local omnisharp_bin = cache_path .. "/lspconfig/omnisharp/run"
 local sumneko_lua_root_path = cache_path .. '/lspconfig/sumneko_lua/lua-language-server'
-local sumneko_lua_binary = sumneko_lua_root_path .. '/bin/Linux/lua-language-server'
+
+local lua_language_server_path = '/bin/Linux/lua-language-server'
+
+if vim.fn.has('mac') == 1 then
+  lua_language_server_path = '/bin/macOS/lua-language-server'
+end
+
+local sumneko_lua_binary = sumneko_lua_root_path .. lua_language_server_path
 
 -- Language Servers
 lspconfig.bashls.setup(default_config)

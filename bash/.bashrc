@@ -17,4 +17,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 source ~/.bash_aliases
 [[ -f ~/.bash_local ]] && source ~/.bash_local 
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source "$HOME/.cargo/env"
+
 eval "$(starship init bash)"

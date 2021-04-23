@@ -16,6 +16,16 @@ ln -sf $path/.xinitrc $HOME/.xinitrc
 ln -sf $path/.gitconfig $HOME/.gitconfig
 
 # ========
+# zsh
+# ========
+ln -sf $path/zsh/.zshrc $HOME/.zshrc
+ln -sf $path/zsh/.zsh_aliases $HOME/.zsh_aliases
+[ ! -d $HOME/.zsh_functions ] && mkdir -p $HOME/.zsh_functions
+ln -sf $path/zsh/.zsh_functions/* $HOME/.zsh_functions/
+
+[ -f $path/zsh/.zsh_local ] && ln -sf $path/zsh/.zsh_local $HOME/.zsh_local
+
+# ========
 # Bash
 # ========
 ln -sf $path/bash/.bashrc $HOME/.bashrc
