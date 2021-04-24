@@ -124,4 +124,20 @@ M.quickfix = function()
   builtin.quickfix()
 end
 
+M.search_history = function()
+  builtin.search_history()
+end
+
+M.git_branches = function()
+  builtin.git_branches()
+end
+
+M.git_commits = function()
+  builtin.git_commits()
+end
+
+M.git_status = function()
+  builtin.git_status()
+end
+
 return M

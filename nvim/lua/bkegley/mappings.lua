@@ -36,7 +36,13 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>fw', ':lua require"bkegley.telescope".grep_string(vim.fn.expand("<cword>"))<CR>')
   utils.key_mapper('n', '<leader>fh', ':lua require"bkegley.telescope".help_tags()<CR>')
   utils.key_mapper('n', '<leader>fb', ':lua require"bkegley.telescope".buffers()<CR>')
+  utils.key_mapper('n', '<leader>f/', ':lua require"bkegley.telescope".search_history()<CR>')
   utils.key_mapper('n', '<leader>fq', ':lua require"bkegley.telescope".quickfix()<CR>')
+
+  utils.key_mapper('n', '<leader>fgb', ':lua require"bkegley.telescope".quickfix()<CR>')
+  utils.key_mapper('n', '<leader>fgc', ':lua require"bkegley.telescope".git_commits()<CR>')
+  utils.key_mapper('n', '<leader>fgs', ':lua require"bkegley.telescope".git_status()<CR>')
+
   utils.key_mapper('n', '<leader>fd', ':lua require"bkegley.telescope".dotfiles()<CR>')
 
 
