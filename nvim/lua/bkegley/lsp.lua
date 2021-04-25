@@ -1,8 +1,5 @@
 local lspconfig = require'lspconfig'
 local completion = require'completion'
-local lsp_status = require'lsp-status'
-
-lsp_status.register_progress()
 
 -- Diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -17,12 +14,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 local function default_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
-  lsp_status.on_attach(client)
 end
 
 local default_config = {
   on_attach = default_on_attach,
-  capabilities = lsp_status.capabilities
 }
 
 local pid = vim.fn.getpid()
@@ -31,7 +26,6 @@ local omnisharp_bin = cache_path .. "/lspconfig/omnisharp/run"
 local sumneko_lua_root_path = cache_path .. '/lspconfig/sumneko_lua/lua-language-server'
 
 local lua_language_server_path = '/bin/Linux/lua-language-server'
-
 if vim.fn.has('mac') == 1 then
   lua_language_server_path = '/bin/macOS/lua-language-server'
 end
@@ -73,3 +67,44 @@ lspconfig.sumneko_lua.setup({
 })
 lspconfig.vimls.setup(default_config)
 lspconfig.yamlls.setup(default_config)
+
+local eslint_config = {
+  lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {
+     "%f(%l,%c): %tarning %m",
+     "%f(%l,%c): %rror %m"
+  },
+  rootMarkers = {
+     '.git/',
+     'package.json',
+     '.eslintrc*'
+  },
+}
+
+lspconfig.efm.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    client.resolved_capabilities.goto_definition = false
+    default_on_attach(client)
+  end,
+  settings = {
+    languages = {
+      javascript = {eslint_config},
+      javascriptreact = {eslint_config},
+      ["javascript.jsx"] = {eslint_config},
+      typescript = {eslint_config},
+      ["typescript.tsx"] = {eslint_config},
+      typescriptreact = {eslint_config}
+    }
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
+  },
+}
