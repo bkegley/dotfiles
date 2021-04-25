@@ -39,6 +39,8 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>f/', ':lua require"bkegley.telescope".search_history()<CR>')
   utils.key_mapper('n', '<leader>fq', ':lua require"bkegley.telescope".quickfix()<CR>')
 
+  utils.key_mapper('n', '<leader>frs', ':lua require"bkegley.telescope".relative_grep()<CR>')
+
   utils.key_mapper('n', '<leader>fgb', ':lua require"bkegley.telescope".quickfix()<CR>')
   utils.key_mapper('n', '<leader>fgc', ':lua require"bkegley.telescope".git_commits()<CR>')
   utils.key_mapper('n', '<leader>fgs', ':lua require"bkegley.telescope".git_status()<CR>')
