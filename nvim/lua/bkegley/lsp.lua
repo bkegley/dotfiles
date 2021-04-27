@@ -44,6 +44,7 @@ lspconfig.omnisharp.setup({
 })
 lspconfig.tsserver.setup(default_config)
 lspconfig.svelte.setup(default_config)
+lspconfig.terraformls.setup(default_config)
 lspconfig.sumneko_lua.setup({
     cmd = {sumneko_lua_binary, "-E", sumneko_lua_root_path .. '/main.lua'},
     on_attach = default_on_attach,
@@ -91,7 +92,6 @@ lspconfig.efm.setup {
   end,
   settings = {
     languages = {
-      javascript = {eslint_config},
       javascriptreact = {eslint_config},
       ["javascript.jsx"] = {eslint_config},
       typescript = {eslint_config},
@@ -106,5 +106,5 @@ lspconfig.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact"
-  },
+  }
 }
