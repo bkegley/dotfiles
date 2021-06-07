@@ -26,6 +26,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
 alias gl='git log'
+alias gco='git checkout'
 
 # yarn
 alias yw='yarn workspace'

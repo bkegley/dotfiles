@@ -6,6 +6,7 @@ local actions = require'telescope.actions'
 local previewers = require'telescope.previewers'
 local quickfix = require'bkegley.telescope.quickfix'
 local relative_grep = require'bkegley.telescope.relative_grep'
+local delta = require'bkegley.telescope.delta'
 
 
 local defaults = {
@@ -80,12 +81,22 @@ M.git_branches = function()
   builtin.git_branches()
 end
 
-M.git_commits = function()
-  builtin.git_commits()
+M.git_commits = function(opts)
+  opts = opts or {}
+  opts.previewer = delta.previewer
+  builtin.git_commits(opts)
 end
 
-M.git_status = function()
-  builtin.git_status()
+M.git_buffer_commits = function(opts)
+  opts = opts or {}
+  opts.previewer = delta.previewer
+  builtin.git_bcommits(opts)
+end
+
+M.git_status = function(opts)
+  opts = opts or {}
+  opts.previewer = delta.previewer
+  builtin.git_status(opts)
 end
 
 M.relative_grep = function()
