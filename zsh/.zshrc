@@ -1,6 +1,6 @@
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/bkegley/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export TERM='xterm-256color'
 
 ZSH_THEME="robbyrussell"
@@ -24,11 +24,17 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
+export NVM_DIR="$HOME/.nvm"
+#This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 source ~/.zsh_aliases
 [[ -f ~/.zsh_local ]] && source ~/.zsh_local 
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+path+=('/opt/homebrew/bin')
 
 eval "$(starship init zsh)"
 
