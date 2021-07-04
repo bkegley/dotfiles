@@ -19,15 +19,22 @@ local defaults = {
   }
 }
 
+local theme = {
+  layout_config = {
+    prompt_position = 'top'
+  },
+  layout_strategy = 'horizontal',
+  sorting_strategy = 'ascending',
+}
 
-local theme_defaults = themes.get_dropdown{ win_blend = 10, results_height = .25, width = .65, shorten_path = true }
+local previewers = {
+  file_previewer = previewers.vim_buffer_cat.new,
+  grep_previewer = previewers.vim_buffer_vimgrep.new,
+  qflist_previewer = previewers.vim_buffer_qflist.new
+}
 
 telescope.setup({
-  defaults = vim.tbl_extend('error', theme_defaults, defaults, {
-    file_previewer = previewers.vim_buffer_cat.new,
-    grep_previewer = previewers.vim_buffer_vimgrep.new,
-    qflist_previewer = previewers.vim_buffer_qflist.new
-  })
+  defaults = vim.tbl_extend('error', defaults, theme, previewers)
 })
 
 local M = {}
