@@ -35,6 +35,7 @@ wo.wrap = false
 
 vim.g.NERDTreeShowHidden = 1
 vim.g.NERDTreeWinPos = "right"
+vim.g.NERDSpaceDelims = 1
 
 vim.g.Omnisharp_server_stdio = 0
 
