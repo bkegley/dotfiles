@@ -21,10 +21,12 @@ local defaults = {
 
 local theme = {
   layout_config = {
-    prompt_position = 'top'
+    prompt_position = 'top',
+    width = .85
   },
   layout_strategy = 'horizontal',
   sorting_strategy = 'ascending',
+  path_display = { 'shorten' }
 }
 
 local previewers = {
