@@ -13,5 +13,4 @@ configs.setup {
   }
 }
 
-local parser_configs = parsers.get_parser_configs()
-parser_configs.html.used_by = 'svelte'
+parsers.html = 'svelte'

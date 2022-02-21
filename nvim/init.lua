@@ -9,6 +9,7 @@ local bo = vim.bo
 local wo = vim.wo
 
 o.termguicolors = true
+o.background = 'dark'
 o.syntax = 'on'
 o.errorbells = false
 o.smartcase = true

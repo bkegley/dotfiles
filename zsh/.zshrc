@@ -38,3 +38,8 @@ path+=('/opt/homebrew/bin')
 
 eval "$(starship init zsh)"
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+alias luamake=/Users/bryan/repos/git/lua-language-server/3rd/luamake/luamake

@@ -21,3 +21,5 @@ source ~/.bash_aliases
 source "$HOME/.cargo/env"
 
 eval "$(starship init bash)"
+
+complete -C /opt/homebrew/bin/terraform terraform

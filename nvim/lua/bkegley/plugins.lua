@@ -33,7 +33,10 @@ return packer.startup(function()
   use 'airblade/vim-rooter'
   use 'preservim/nerdtree'
   use 'mbbill/undotree'
-  use 'tpope/vim-fugitive'
+  use {'pwntester/octo.nvim', config=function()
+    require"octo".setup()
+  end}
+  use {'kyazdani42/nvim-web-devicons'}
   use 'jiangmiao/auto-pairs'
   use 'sheerun/vim-polyglot'
 

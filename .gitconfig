@@ -1,5 +1,5 @@
 [user]
-	name = Bryan Kegley
+	name = bkegley
 	email = hi@bryankegley.me
 
 [credential]
@@ -28,3 +28,5 @@
     line-numbers-minus-style = 124
     line-numbers-plus-style = 28
 
+[init]
+	defaultBranch = main

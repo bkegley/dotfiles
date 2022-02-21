@@ -1,6 +1,8 @@
 local lspconfig = require'lspconfig'
 local completion = require'completion'
 
+local runtime_path = vim.split(package.path, ';')
+
 -- Diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -23,14 +25,11 @@ local default_config = {
 local pid = vim.fn.getpid()
 local cache_path = vim.fn.stdpath('cache')
 local omnisharp_bin = cache_path .. "/lspconfig/omnisharp/run"
-local sumneko_lua_root_path = cache_path .. '/lspconfig/sumneko_lua/lua-language-server'
 
-local lua_language_server_path = '/bin/Linux/lua-language-server'
-if vim.fn.has('mac') == 1 then
-  lua_language_server_path = '/bin/macOS/lua-language-server'
-end
 
-local sumneko_lua_binary = sumneko_lua_root_path .. lua_language_server_path
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
 
 -- Language Servers
 lspconfig.bashls.setup(default_config)
@@ -45,27 +44,25 @@ lspconfig.omnisharp.setup({
 lspconfig.tsserver.setup(default_config)
 lspconfig.svelte.setup(default_config)
 lspconfig.terraformls.setup(default_config)
-lspconfig.sumneko_lua.setup({
-    cmd = {sumneko_lua_binary, "-E", sumneko_lua_root_path .. '/main.lua'},
-    on_attach = default_on_attach,
-    settings = {
-      Lua ={
-        runtime = {
-          version = 'LuaJIT',
-          path = vim.split(package.path, ';')
-        },
-        diagnostics = {
-          globals = {'vim'}
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-          }
-        }
-      }
-    }
-})
+require'lspconfig'.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
 lspconfig.vimls.setup(default_config)
 lspconfig.yamlls.setup(default_config)
 
