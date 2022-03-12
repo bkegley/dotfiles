@@ -4,6 +4,7 @@ local utils = require'bkegley.utils'
 local setup_mappings = function()
   -- Temp commands
   vim.cmd[[autocmd BufWritePre *.cs :lua vim.lsp.buf.formatting_sync()]]
+  vim.cmd[[command BufGetClient :lua print(vim.inspect(vim.lsp.buf_get_clients()))]]
   vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
 
   utils.key_mapper('n', '<leader><C-W>', ':write | edit | TSBufEnable highlight<CR><CR>')
