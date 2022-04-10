@@ -35,9 +35,12 @@ local previewers = {
   qflist_previewer = previewers.vim_buffer_qflist.new
 }
 
+
 telescope.setup({
   defaults = vim.tbl_extend('error', defaults, theme, previewers)
 })
+
+telescope.load_extension("git_worktree")
 
 local M = {}
 

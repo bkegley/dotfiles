@@ -49,6 +49,9 @@ local setup_mappings = function()
 
   utils.key_mapper('n', '<leader>fd', ':lua require"bkegley.telescope".dotfiles()<CR>')
 
+  utils.key_mapper('n', '<leader>ws', ':lua require"telescope".extensions.git_worktree.git_worktrees()<CR>')
+  utils.key_mapper('n', '<leader>wc', ':lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
+
 
   -- Nerdtree
   utils.key_mapper('n', '<leader>ne', ':NERDTreeToggle<CR>')

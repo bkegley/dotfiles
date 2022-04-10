@@ -1,7 +1,13 @@
 local lspconfig = require'lspconfig'
-local completion = require'completion'
+local cmp_nvim_lsp = require'cmp_nvim_lsp'
+local lsp_status = require'lsp-status'
 
 local runtime_path = vim.split(package.path, ';')
+
+local pid = vim.fn.getpid()
+
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 
 -- Diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -12,59 +18,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
-
-local function default_on_attach(client)
-  print('Attaching to ' .. client.name)
-  completion.on_attach(client)
-end
-
-local default_config = {
-  on_attach = default_on_attach,
-}
-
-local pid = vim.fn.getpid()
-local cache_path = vim.fn.stdpath('cache')
-local omnisharp_bin = cache_path .. "/lspconfig/omnisharp/run"
-
-
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-
--- Language Servers
-lspconfig.bashls.setup(default_config)
-lspconfig.cssls.setup(default_config)
-lspconfig.dockerls.setup(default_config)
-lspconfig.html.setup(default_config)
-lspconfig.jsonls.setup(default_config)
-lspconfig.omnisharp.setup({
-    cmd={ omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) },
-    on_attach = default_on_attach,
-})
-lspconfig.tsserver.setup(default_config)
-lspconfig.svelte.setup(default_config)
-lspconfig.terraformls.setup(default_config)
-require'lspconfig'.sumneko_lua.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = runtime_path,
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
-lspconfig.vimls.setup(default_config)
-lspconfig.yamlls.setup(default_config)
 
 local eslint_config = {
   lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
@@ -81,27 +34,91 @@ local eslint_config = {
   },
 }
 
-lspconfig.efm.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
-    client.resolved_capabilities.goto_definition = false
-    default_on_attach(client)
-  end,
-  settings = {
-    languages = {
-      javascriptreact = {eslint_config},
-      ["javascript.jsx"] = {eslint_config},
-      typescript = {eslint_config},
-      ["typescript.tsx"] = {eslint_config},
-      typescriptreact = {eslint_config}
+-- Thanks TJ!
+local servers = {
+  bashls = true,
+  cssls = true,
+  dockerls = true,
+  html = true,
+  jsonls = true,
+  omnisharp = {
+      cmd={vim.fn.stdpath('cache') .. "/lspconfig/omnisharp/run" , "--languageserver" , "--hostPID", tostring(pid) },
+  },
+  tsserver = true,
+  svelte = true,
+  terraformls = true,
+  sumneko_lua  = {
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          path = runtime_path,
+        },
+        diagnostics = {
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  },
+  vimls = true,
+  yamlls = true,
+  efm = {
+    on_attach = function(client)
+      client.resolved_capabilities.document_formatting = true
+      client.resolved_capabilities.goto_definition = false
+    end,
+    settings = {
+      languages = {
+        javascriptreact = {eslint_config},
+        ["javascript.jsx"] = {eslint_config},
+        typescript = {eslint_config},
+        ["typescript.tsx"] = {eslint_config},
+        typescriptreact = {eslint_config}
+      }
+    },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescript.tsx",
+      "typescriptreact"
     }
   },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescript.tsx",
-    "typescriptreact"
-  }
 }
+
+local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+local function default_on_attach(client)
+  print('Attaching to ' .. client.name)
+  lsp_status.on_attach(client)
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+end
+
+local setup_server = function(server, config)
+  if not config then
+    return
+  end
+
+  if type(config) ~= "table" then
+    config = {}
+  end
+
+  config = vim.tbl_deep_extend("force", {
+    on_attach = default_on_attach,
+    capabilities = capabilities,
+  }, config)
+
+  lspconfig[server].setup(config)
+end
+
+for server, config in pairs(servers) do
+  setup_server(server, config)
+end
+

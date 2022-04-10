@@ -21,8 +21,13 @@ packer.init({
 
 return packer.startup(function()
   local use = use
+
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-nvim-lsp"
+
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
 
@@ -33,12 +38,25 @@ return packer.startup(function()
   use 'airblade/vim-rooter'
   use 'preservim/nerdtree'
   use 'mbbill/undotree'
-  use {'pwntester/octo.nvim', config=function()
-    require"octo".setup()
-  end}
+  use {
+    'pwntester/octo.nvim',
+    config=function()
+      require"octo".setup()
+    end,
+  }
   use {'kyazdani42/nvim-web-devicons'}
   use 'jiangmiao/auto-pairs'
   use 'sheerun/vim-polyglot'
+  use {
+    'theprimeagen/git-worktree.nvim',
+    config = function()
+      require('git-worktree').setup {}
+    end,
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- js/ts
   use 'leafgarland/typescript-vim'
