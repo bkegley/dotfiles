@@ -23,10 +23,14 @@ return packer.startup(function()
   local use = use
 
   use 'neovim/nvim-lspconfig'
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lsp"
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-cmdline'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'onsails/lspkind-nvim'
 
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
@@ -41,7 +45,7 @@ return packer.startup(function()
   use {
     'pwntester/octo.nvim',
     config=function()
-      require"octo".setup()
+      require'octo'.setup()
     end,
   }
   use {'kyazdani42/nvim-web-devicons'}
@@ -51,6 +55,12 @@ return packer.startup(function()
     'theprimeagen/git-worktree.nvim',
     config = function()
       require('git-worktree').setup {}
+    end,
+  }
+  use {
+    'theprimeagen/harpoon',
+    config = function()
+      require('harpoon').setup {}
     end,
   }
   use {

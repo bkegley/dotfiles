@@ -1,5 +1,6 @@
 local vim = vim
 local cmp = require'cmp'
+local lspkind = require'lspkind'
 
 vim.g.completion_matching_strategy_list = {'substring', 'exact', 'fuzzy', 'all'}
 vim.g.diagnostic_enable_virtual_text = 1
@@ -25,7 +26,11 @@ cmp.setup({
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'buffer', keyword_length = 5 },
-    })
+    }),
+  formatting = {
+    format = lspkind.cmp_format()
+  }
+
   })
 
   cmp.setup.cmdline('/', {

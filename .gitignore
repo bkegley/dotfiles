@@ -1,3 +1,4 @@
+.DS_Store
 .Xoverrides
 bash/.bash_local
 zsh/.zsh_local

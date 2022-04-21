@@ -7,6 +7,7 @@ local previewers = require'telescope.previewers'
 local quickfix = require'bkegley.telescope.quickfix'
 local relative_grep = require'bkegley.telescope.relative_grep'
 local delta = require'bkegley.telescope.delta'
+local harpoon = require'bkegley.telescope.harpoon'
 
 
 local defaults = {
@@ -22,14 +23,13 @@ local defaults = {
 local theme = {
   layout_config = {
     prompt_position = 'top',
-    width = .85
+    width = .99
   },
-  layout_strategy = 'horizontal',
+  layout_strategy = 'vertical',
   sorting_strategy = 'ascending',
-  path_display = { 'shorten' }
 }
 
-local previewers = {
+local default_previewers = {
   file_previewer = previewers.vim_buffer_cat.new,
   grep_previewer = previewers.vim_buffer_vimgrep.new,
   qflist_previewer = previewers.vim_buffer_qflist.new
@@ -37,10 +37,12 @@ local previewers = {
 
 
 telescope.setup({
-  defaults = vim.tbl_extend('error', defaults, theme, previewers)
+  defaults = vim.tbl_extend('error', defaults, theme, default_previewers)
 })
 
-telescope.load_extension("git_worktree")
+
+telescope.load_extension('git_worktree')
+telescope.load_extension('harpoon')
 
 local M = {}
 
@@ -78,11 +80,21 @@ M.grep_string = function(search)
 end
 
 M.buffers = function()
-  builtin.buffers()
+  builtin.buffers({
+      attach_mappings = function(_, map)
+            map("i", "<c-d>", actions.delete_buffer)
+            map("n", "<c-d>", actions.delete_buffer)
+            return true
+        end,
+    })
 end
 
 M.quickfix = function()
   builtin.quickfix()
+end
+
+M.buf_fuzzy_find = function()
+  builtin.current_buffer_fuzzy_find()
 end
 
 M.search_history = function()
@@ -113,6 +125,10 @@ end
 
 M.relative_grep = function()
   relative_grep.relative_grep({hidden = true})
+end
+
+M.harpoon_marks = function(opts)
+  harpoon.marks(opts)
 end
 
 return M

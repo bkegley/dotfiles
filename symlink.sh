@@ -92,6 +92,12 @@ ln -sf $path/dunst/* $HOME/.config/dunst
 ln -sf $path/tmux/tmux.conf $HOME/.tmux.conf
 
 # ========
+# Karabiner Elements
+# ========
+[ ! -d $HOME/.config/karabiner ] && mkdir -p $HOME/.config/karabiner
+ln -sf $path/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
+
+# ========
 # Themes
 # ========
 [ ! -d $HOME/themes ] && mkdir -p $HOME/themes

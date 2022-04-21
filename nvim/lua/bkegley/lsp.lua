@@ -6,8 +6,17 @@ local runtime_path = vim.split(package.path, ';')
 
 local pid = vim.fn.getpid()
 
+local function default_on_attach(client)
+  print('Attaching to ' .. client.name)
+  lsp_status.on_attach(client)
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+end
+
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
+
+-- Uncomment this for debugging in ~/.cache/nvim/lsp.log
+-- vim.lsp.set_log_level("debug")
 
 -- Diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -44,7 +53,17 @@ local servers = {
   omnisharp = {
       cmd={vim.fn.stdpath('cache') .. "/lspconfig/omnisharp/run" , "--languageserver" , "--hostPID", tostring(pid) },
   },
-  tsserver = true,
+  tsserver = {
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+  },
   svelte = true,
   terraformls = true,
   sumneko_lua  = {
@@ -72,6 +91,8 @@ local servers = {
     on_attach = function(client)
       client.resolved_capabilities.document_formatting = true
       client.resolved_capabilities.goto_definition = false
+
+      default_on_attach(client)
     end,
     settings = {
       languages = {
@@ -95,11 +116,6 @@ local servers = {
 
 local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local function default_on_attach(client)
-  print('Attaching to ' .. client.name)
-  lsp_status.on_attach(client)
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-end
 
 local setup_server = function(server, config)
   if not config then
