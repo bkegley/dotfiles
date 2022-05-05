@@ -35,11 +35,10 @@ M.relative_grep = function(opts)
       return finders.new_table {
         results = data,
         entry_maker = (function()
-          local tele_path = require'telescope.path'
           local gen = require('telescope.make_entry').gen_from_file(opts)
           return function(entry)
             local tmp = gen(entry)
-            tmp.ordinal = tele_path.make_relative(entry, opts.cwd)
+            tmp.ordinal = require('plenary.path'):new(entry):make_relative(opts.cwd)
             return tmp
           end
         end)()
