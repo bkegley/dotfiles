@@ -48,7 +48,7 @@ set noshowmode
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-colorscheme gloombuddy
+colorscheme OceanicNext
 let g:airline_theme='oceanicnext'
 
 if (has("termguicolors"))

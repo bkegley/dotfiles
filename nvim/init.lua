@@ -2,7 +2,7 @@
 local vim = vim
 
 vim.g.mapleader = ' '
-vim.g.colors_name = 'gloombuddy'
+vim.g.colors_name = 'OceanicNext'
 
 local o = vim.o
 local bo = vim.bo
@@ -39,5 +39,9 @@ vim.g.NERDTreeWinPos = "right"
 vim.g.NERDSpaceDelims = 1
 
 vim.g.Omnisharp_server_stdio = 0
+
+-- vim.g.do_filetype_lua = 1
+-- vim.g.do_legacy_filetype = 1
+-- vim.g.ts_highlight_lua = true
 
 require'bkegley'

@@ -29,6 +29,8 @@ return packer.startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-cmdline'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   use 'onsails/lspkind-nvim'
 
@@ -36,8 +38,12 @@ return packer.startup(function()
   use 'anott03/nvim-lspinstall'
 
   use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/telescope.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim' }
+  }
+
   use 'jremmen/vim-ripgrep'
   use 'airblade/vim-rooter'
   use 'preservim/nerdtree'
@@ -91,5 +97,7 @@ return packer.startup(function()
   use 'ghifarit53/tokyonight-vim'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use {'rockerBOO/boo-colorscheme-nvim', branch = 'main' }
+
+  use 'github/copilot.vim'
   end
 )

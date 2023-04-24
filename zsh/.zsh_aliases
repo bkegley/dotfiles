@@ -23,3 +23,6 @@ alias gl='git log'
 
 # yarn
 alias yw='yarn workspace'
+
+#grep
+alias grepcontext='grep -B 5 -A 5'
