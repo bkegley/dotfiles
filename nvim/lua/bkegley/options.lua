@@ -2,6 +2,8 @@ local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
 
+vim.g.colors_name = 'bluewery'
+
 o.termguicolors = true
 o.background = 'dark'
 o.syntax = 'on'
@@ -37,5 +39,3 @@ vim.g.Omnisharp_server_stdio = 0
 -- vim.g.do_filetype_lua = 1
 -- vim.g.do_legacy_filetype = 1
 -- vim.g.ts_highlight_lua = true
-
-require'bkegley'

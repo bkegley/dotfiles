@@ -1,49 +1,81 @@
-local vim = vim
-local telescope = require'telescope'
-local themes = require'telescope.themes'
-local builtin = require'telescope.builtin'
-local actions = require'telescope.actions'
-local previewers = require'telescope.previewers'
-local quickfix = require'bkegley.telescope.quickfix'
-local relative_grep = require'bkegley.telescope.relative_grep'
-local delta = require'bkegley.telescope.delta'
-local harpoon = require'bkegley.telescope.harpoon'
+local telescope = require 'telescope'
+local themes = require 'telescope.themes'
+local builtin = require 'telescope.builtin'
+local actions = require 'telescope.actions'
+local previewers = require 'telescope.previewers'
+local quickfix = require 'bkegley.telescope.quickfix'
+local delta = require 'bkegley.telescope.delta'
 
-
-local defaults = {
-  mappings = {
-    i = {
-      ["<esc>"] = actions.close,
-      ["<C-a>"] = quickfix.add_selection_to_quickfix,
-      ["<C-q>"] = quickfix.remove_selection_from_quickfix
-    }
-  }
-}
-
-local theme = {
-  layout_config = {
-    prompt_position = 'top',
-    width = .99
+require 'telescope'.setup({
+  theme = themes.get_dropdown(),
+  defaults = {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+      "--glob=!.git/",
+    },
+    mappings = {},
+    file_ignore_patterns = {
+      '.git',
+      'dist',
+      'build',
+      'node_modules'
+    },
+    path_display = { "smart" },
+    winblend = 0,
+    border = {},
+    borderchars = nil,
+    color_devicons = true,
+    set_env = { ["COLORTERM"] = "truecolor" },
   },
-  layout_strategy = 'vertical',
-  sorting_strategy = 'ascending',
-}
-
-local default_previewers = {
-  file_previewer = previewers.vim_buffer_cat.new,
-  grep_previewer = previewers.vim_buffer_vimgrep.new,
-  qflist_previewer = previewers.vim_buffer_qflist.new
-}
-
-
-telescope.setup({
-  defaults = vim.tbl_extend('error', defaults, theme, default_previewers)
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+    live_grep = {
+      only_sort_text = true,
+    },
+    grep_string = {
+      only_sort_text = true,
+    },
+    buffers = {
+      mappings = {
+        i = {
+          ["<C-d>"] = actions.delete_buffer,
+        },
+        n = {
+          ["dd"] = actions.delete_buffer,
+        },
+      },
+    },
+    git_files = {
+      hidden = true,
+      show_untracked = true,
+    },
+    colorscheme = {
+      enable_preview = true,
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  }
 })
 
-
-telescope.load_extension('git_worktree')
-telescope.load_extension('harpoon')
-telescope.load_extension('file_browser')
+require 'telescope'.load_extension('git_worktree')
+require 'telescope'.load_extension('file_browser')
+require 'telescope'.load_extension('ui-select')
+pcall(require 'telescope'.load_extension, 'fzf')
 
 local M = {}
 
@@ -81,13 +113,7 @@ M.grep_string = function(search)
 end
 
 M.buffers = function()
-  builtin.buffers({
-      attach_mappings = function(_, map)
-            map("i", "<c-d>", actions.delete_buffer)
-            map("n", "<c-d>", actions.delete_buffer)
-            return true
-        end,
-    })
+  builtin.buffers()
 end
 
 M.quickfix = function()
@@ -122,14 +148,6 @@ M.git_status = function(opts)
   opts = opts or {}
   opts.previewer = delta.previewer
   builtin.git_status(opts)
-end
-
-M.relative_grep = function()
-  relative_grep.relative_grep({hidden = true})
-end
-
-M.harpoon_marks = function(opts)
-  harpoon.marks(opts)
 end
 
 return M

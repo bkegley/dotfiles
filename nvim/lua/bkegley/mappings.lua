@@ -3,9 +3,9 @@ local utils = require'bkegley.utils'
 
 local setup_mappings = function()
   -- Temp commands
-  vim.cmd[[autocmd BufWritePre *.cs :lua vim.lsp.buf.formatting_sync()]]
+  -- vim.cmd[[autocmd BufWritePre *.cs :lua vim.lsp.buf.formatting_sync()]]
   vim.cmd[[command BufGetClient :lua print(vim.inspect(vim.lsp.buf_get_clients()))]]
-  vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
+  -- vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
 
   -- Completion
   vim.cmd[[inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"]]
@@ -17,6 +17,13 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>dp',   ':lua vim.diagnostic.goto_prev()<CR>')
   utils.key_mapper('n', '<leader>ds',   ':lua vim.diagnostic.open_float()<CR>')
   utils.key_mapper('n', '<leader>da',   ':lua require"telescope.builtin".diagnostics()<CR>')
+
+
+  -- Diagnostic keymaps
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+  vim.keymap.set('n', '<leader>q', require'telescope.builtin'.diagnostics, { desc = "Open diagnostics list" })
 
   -- LSP
   utils.key_mapper('n', 'gd',           ':lua vim.lsp.buf.definition()<CR>')
@@ -41,8 +48,7 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>/',    ':lua require"bkegley.telescope".buf_fuzzy_find()<CR>')
   utils.key_mapper('n', '<leader>f/',   ':lua require"bkegley.telescope".search_history()<CR>')
   utils.key_mapper('n', '<leader>fq',   ':lua require"bkegley.telescope".quickfix()<CR>')
-
-  utils.key_mapper('n', '<leader>frs',  ':lua require"bkegley.telescope".relative_grep()<CR>')
+  utils.key_mapper('n', '<leader>fc',   ':lua require"telescope.builtin".colorscheme()<CR>')
 
   utils.key_mapper('n', '<leader>gb',   ':lua require"bkegley.telescope".git_branches()<CR>')
   utils.key_mapper('n', '<leader>gc',   ':lua require"bkegley.telescope".git_commits()<CR>')

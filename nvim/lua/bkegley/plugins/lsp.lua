@@ -4,6 +4,7 @@ return {
     dependencies = {
       {
         'williamboman/mason.nvim',
+        build = ":MasonUpdate",
         config = true
       },
       'williamboman/mason-lspconfig.nvim',
@@ -14,4 +15,10 @@ return {
       'folke/neodev.nvim',
     },
   },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require 'bkegley.format'
+    end
+  }
 }

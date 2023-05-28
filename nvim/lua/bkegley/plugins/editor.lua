@@ -1,16 +1,4 @@
 return {
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip'
-    },
-  },
-
   -- unsure
   -- 'jose-elias-alvarez/nvim-lsp-ts-utils',
   -- 'onsails/lspkind-nvim',
@@ -18,24 +6,8 @@ return {
   -- 'jremmen/vim-ripgrep',
   -- 'airblade/vim-rooter',
 
-  {
-    'nvim-telescope/telescope.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      'nvim-telescope/telescope-ui-select.nvim',
-      'nvim-telescope/telescope-file-browser.nvim'
-    }
-  },
 
-  -- 'preservim/nerdtree',
+  'preservim/nerdtree',
   -- 'mbbill/undotree',
   -- {
   -- 'pwntester/octo.nvim',
@@ -45,12 +17,6 @@ return {
   -- },
   'jiangmiao/auto-pairs',
   -- 'sheerun/vim-polyglot',
-  -- {
-  -- 'theprimeagen/harpoon',
-  -- config = function()
-  -- require('harpoon').setup {}
-  -- end,
-  -- },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -68,7 +34,6 @@ return {
   -- 'leafgarland/typescript-vim',
   -- 'pangloss/vim-javascript',
   -- 'peitalin/vim-jsx-typescript',
-  { 'prettier/vim-prettier', run = 'yarn install' },
   'preservim/nerdcommenter',
 
   -- rs
@@ -84,5 +49,16 @@ return {
   -- 'christianchiarulli/nvcode-color-schemes.vim',
   -- {'rockerBOO/boo-colorscheme-nvim', branch = 'main' },
 
-  'github/copilot.vim'
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup({
+        suggestion = {
+          auto_trigger = true
+        }
+      })
+    end
+  }
 }

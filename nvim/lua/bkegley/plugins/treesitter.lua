@@ -18,7 +18,6 @@ return {
         "dockerfile",
         "dot",
         "graphql",
-        "help",
         "html",
         "javascript",
         "jsdoc",
