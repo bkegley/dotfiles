@@ -74,7 +74,7 @@ require 'telescope'.setup({
 
 require 'telescope'.load_extension('git_worktree')
 require 'telescope'.load_extension('file_browser')
-require 'telescope'.load_extension('ui-select')
+-- require 'telescope'.load_extension('ui-select')
 pcall(require 'telescope'.load_extension, 'fzf')
 
 local M = {}
@@ -128,8 +128,8 @@ M.search_history = function()
   builtin.search_history()
 end
 
-M.git_branches = function()
-  builtin.git_branches()
+M.git_branches = function(pattern)
+  builtin.git_branches({ pattern = pattern })
 end
 
 M.git_commits = function(opts)

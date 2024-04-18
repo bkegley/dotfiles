@@ -1,3 +1,5 @@
+local util = require "lspconfig.util"
+
 local default_on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -42,6 +44,24 @@ local servers = {
   dockerls = {},
   html = {},
   jsonls = {},
+  prismals = {},
+  biome = {
+    cmd = { "biome", "lsp-proxy" },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "json",
+      "jsonc",
+      "typescript",
+      "typescript.tsx",
+      "typescriptreact",
+      "astro",
+      "svelte",
+      "vue"
+    },
+    root_dir = util.root_pattern("biome.json", "biome.jsonc"),
+    single_file_support = false
+  },
   tsserver = {
     on_attach = function(client)
       client.server_capabilities.document_formatting = false

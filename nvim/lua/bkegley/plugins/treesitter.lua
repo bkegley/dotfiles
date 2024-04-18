@@ -25,6 +25,7 @@ return {
         "lua",
         "make",
         "markdown",
+        "prisma",
         "regex",
         "scss",
         "svelte",

@@ -36,6 +36,9 @@ vim.g.NERDSpaceDelims = 1
 
 vim.g.Omnisharp_server_stdio = 0
 
+vim.opt.splitkeep = "screen"
+vim.opt.laststatus = 3
+
 -- vim.g.do_filetype_lua = 1
 -- vim.g.do_legacy_filetype = 1
 -- vim.g.ts_highlight_lua = true

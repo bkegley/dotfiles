@@ -8,6 +8,7 @@
 [core]
   pager = delta
 	autocrlf = false
+	excludesfile = /Users/bkegley/.gitignore_global
 
 [delta]
   features = side-by-side line-numbers decorations
@@ -36,3 +37,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pull]
+	rebase = true

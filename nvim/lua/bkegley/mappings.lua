@@ -51,6 +51,7 @@ local setup_mappings = function()
   utils.key_mapper('n', '<leader>fc',   ':lua require"telescope.builtin".colorscheme()<CR>')
 
   utils.key_mapper('n', '<leader>gb',   ':lua require"bkegley.telescope".git_branches()<CR>')
+  utils.key_mapper('n', '<leader>gdb',  ':lua require"bkegley.telescope".git_branches("--list \'bk*\'")<CR>')
   utils.key_mapper('n', '<leader>gc',   ':lua require"bkegley.telescope".git_commits()<CR>')
   utils.key_mapper('n', '<leader>gbc',  ':lua require"bkegley.telescope".git_buffer_commits()<CR>')
   utils.key_mapper('n', '<leader>gs',   ':lua require"bkegley.telescope".git_status()<CR>')
