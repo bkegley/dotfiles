@@ -36,6 +36,9 @@ source ~/.zsh_aliases
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 path+=('/opt/homebrew/bin')
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
 eval "$(starship init zsh)"
 
 
@@ -45,7 +48,7 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 alias luamake=/Users/bryan/repos/git/lua-language-server/3rd/luamake/luamake
 
 # bun completions
-[ -s "/Users/bkegley/.bun/_bun" ] && source "/Users/bkegley/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
