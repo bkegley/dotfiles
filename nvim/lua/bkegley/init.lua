@@ -1,8 +1,0 @@
-require'bkegley.plugins'
-require'bkegley.lsp'
-require'bkegley.completion'
-require'bkegley.mappings'
-require'bkegley.treesitter'
-require'bkegley.lualine'
-require'bkegley.telescope'
-require'bkegley.git-worktree'
