@@ -1,105 +1,60 @@
-path=$(pwd)
+#!/bin/bash
+set -euo pipefail
 
-[ ! -d $HOME/.config ] && mkdir -p $HOME/.config
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+PLATFORM="$(uname -s)"
 
-# ========
-# Xorg
-# ========
-[ ! -d $HOME/.config/.Xresources.d ] && mkdir -p $HOME/.Xresources.d
-ln -sf $path/.Xoverrides $HOME/.Xresources.d/overrides
-ln -sf $path/.Xresources $HOME/.Xresources
-ln -sf $path/.xinitrc $HOME/.xinitrc
+symlink_file() {
+  ln -sf "$1" "$2"
+}
 
-# ========
-# Git
-# ========
-ln -sf $path/git/.gitconfig $HOME/.gitconfig
-ln -sf $path/git/.gitignore_global $HOME/.gitignore_global
+symlink_dir() {
+  if [ -e "$2" ] && [ ! -L "$2" ]; then
+    echo "WARNING: $2 exists and is not a symlink, skipping"
+    return
+  fi
+  ln -sfn "$1" "$2"
+}
 
-# ========
-# zsh
-# ========
-ln -sf $path/zsh/.zshrc $HOME/.zshrc
-ln -sf $path/zsh/.zsh_aliases $HOME/.zsh_aliases
-[ ! -d $HOME/.zsh_functions ] && mkdir -p $HOME/.zsh_functions
-ln -sf $path/zsh/.zsh_functions/* $HOME/.zsh_functions/
+mkdir -p "$HOME/.config"
 
-[ -f $path/zsh/.zsh_local ] && ln -sf $path/zsh/.zsh_local $HOME/.zsh_local
+# === Cross-platform ===
 
-# ========
-# Bash
-# ========
-ln -sf $path/bash/.bashrc $HOME/.bashrc
-ln -sf $path/bash/.bash_aliases $HOME/.bash_aliases
-[ -f $path/bash/.bash_local ] && ln -sf $path/bash/.bash_local $HOME/.bash_local
-ln -sf $path/starship/starship.toml $HOME/.config/starship.toml
+# Umbrella dirs
+symlink_dir "$DOTFILES/shell" "$HOME/.config/shell"
+symlink_dir "$DOTFILES/ghostty" "$HOME/.config/ghostty"
+symlink_dir "$DOTFILES/zellij" "$HOME/.config/zellij"
+symlink_dir "$DOTFILES/nvim" "$HOME/.config/nvim"
+symlink_dir "$DOTFILES/mise" "$HOME/.config/mise"
 
-# ========
-# Terminal
-# ========
-[ ! -d $HOME/.config/alacritty ] && mkdir -p $HOME/.config/alacritty
-ln -sf $path/alacritty/* $HOME/.config/alacritty/
+# Files
+symlink_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+symlink_file "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+symlink_file "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
+symlink_file "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
 
-# ========
-# Neovim
-# ========
-[ ! -d $HOME/.config/nvim ] && mkdir -p $HOME/.config/nvim
-ln -sf $path/nvim/init.vim $HOME/.config/nvim/init.vim
-ln -sf $path/nvim/init.lua $HOME/.config/nvim/init.lua
-[ ! -d $HOME/.config/nvim/lua ] && mkdir -p $HOME/.config/nvim/lua
-[ ! -d $HOME/.config/nvim/lua/bkegley ] && mkdir -p $HOME/.config/nvim/lua/bkegley
-ln -sf $path/nvim/lua/bkegley/* $HOME/.config/nvim/lua/bkegley
+# === macOS ===
+if [ "$PLATFORM" = "Darwin" ]; then
+  symlink_dir "$DOTFILES/karibener" "$HOME/.config/karabiner"
+fi
 
-[ ! -d $HOME/.config/coc ] && mkdir -p $HOME/.config/coc
-[ ! -d $HOME/.config/coc/extensions ] && mkdir -p $HOME/.config/coc/extensions
-ln -sf $path/coc/extensions/* $HOME/.config/coc/extensions/
+# === Linux ===
+if [ "$PLATFORM" = "Linux" ]; then
+  # Xorg
+  mkdir -p "$HOME/.Xresources.d"
+  symlink_file "$DOTFILES/.Xoverrides" "$HOME/.Xresources.d/overrides"
+  symlink_file "$DOTFILES/.Xresources" "$HOME/.Xresources"
+  symlink_file "$DOTFILES/.xinitrc" "$HOME/.xinitrc"
 
-# ========
-# i3
-# ========
-[ ! -d $HOME/.config/i3 ] && mkdir -p $HOME/.config/i3
-ln -sf $path/i3/* $HOME/.config/i3/
+  # Bash
+  symlink_file "$DOTFILES/bash/.bashrc" "$HOME/.bashrc"
+  symlink_file "$DOTFILES/bash/.bash_aliases" "$HOME/.bash_aliases"
+  [ -f "$DOTFILES/bash/.bash_local" ] && symlink_file "$DOTFILES/bash/.bash_local" "$HOME/.bash_local"
 
-# ========
-# Polybar
-# ========
-[ ! -d $HOME/.config/polybar ] && mkdir -p $HOME/.config/polybar
-[ ! -d $HOME/.config/polybar/scripts ] && mkdir -p $HOME/.config/polybar/scripts
-ln -sf $path/polybar/config $HOME/.config/polybar/config
-ln -sf $path/polybar/launch.sh $HOME/.config/polybar/launch.sh
-ln -sf $path/polybar/scripts/* $HOME/.config/polybar/scripts/
-
-# ========
-# Compton
-# ========
-[ ! -d $HOME/.config/compton ] && mkdir -p $HOME/.config/compton
-ln -sf $path/compton/* $HOME/.config/compton
-
-# ========
-# Rofi
-# ========
-[ ! -d $HOME/.config/rofi ] && mkdir -p $HOME/.config/rofi
-ln -sf $path/rofi/* $HOME/.config/rofi
-
-# ========
-# Dunst
-# ========
-[ ! -d $HOME/.config/dunst ] && mkdir -p $HOME/.config/dunst
-ln -sf $path/dunst/* $HOME/.config/dunst
-
-# ========
-# tmux
-# ========
-ln -sf $path/tmux/tmux.conf $HOME/.tmux.conf
-
-# ========
-# Karabiner Elements
-# ========
-[ ! -d $HOME/.config/karabiner ] && mkdir -p $HOME/.config/karabiner
-ln -sf $path/karabiner/karabiner.json $HOME/.config/karabiner/karabiner.json
-
-# ========
-# Themes
-# ========
-[ ! -d $HOME/themes ] && mkdir -p $HOME/themes
-ln -sf $path/themes/* $HOME/themes/
+  # Window manager / desktop
+  symlink_dir "$DOTFILES/i3" "$HOME/.config/i3"
+  symlink_dir "$DOTFILES/polybar" "$HOME/.config/polybar"
+  symlink_dir "$DOTFILES/compton" "$HOME/.config/compton"
+  symlink_dir "$DOTFILES/rofi" "$HOME/.config/rofi"
+  symlink_dir "$DOTFILES/dunst" "$HOME/.config/dunst"
+fi

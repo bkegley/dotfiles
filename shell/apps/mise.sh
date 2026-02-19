@@ -1,0 +1,1 @@
+alias mi='mise install'

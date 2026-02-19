@@ -1,0 +1,69 @@
+# Adapted from https://github.com/alex35mil/dotfiles
+# Keybindings use Unicode relay system for Zellij integration
+
+theme = Catppuccin Macchiato
+
+window-decoration = none
+window-padding-x = 16
+window-padding-y = 16
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+copy-on-select = clipboard
+clipboard-paste-protection = true
+
+# --- Keybindings
+# Claude
+keybind = shift+enter=text:\n
+
+# Zellij: session
+keybind = cmd+t=text:
+keybind = cmd+q=text:
+
+# Zellij: panes
+keybind = cmd+n=text:
+keybind = cmd+shift+n=text:
+keybind = cmd+m=text:
+keybind = cmd+o=text:
+keybind = cmd+f=text:
+keybind = cmd+w=text:
+
+# Ghostty window management
+keybind = ctrl+n=unbind
+keybind = ctrl+w=unbind
+keybind = ctrl+q=unbind
+
+# Zellij: focus
+keybind = shift+left=text:ﰯ
+keybind = shift+right=text:ﰲ
+keybind = shift+up=text:ﰵ
+keybind = shift+down=text:ﰬ
+
+# Zellij: move pane
+keybind = opt+shift+left=text:
+keybind = opt+shift+right=text:
+keybind = opt+shift+up=text:
+keybind = opt+shift+down=text:
+
+# Zellij: resize pane
+keybind = opt+cmd+shift+left=text:
+keybind = opt+cmd+shift+right=text:
+keybind = opt+cmd+shift+up=text:
+keybind = opt+cmd+shift+down=text:
+
+# Zellij: tabs
+keybind = ctrl+shift+n=text:
+keybind = cmd+left=text:
+keybind = cmd+right=text:
+keybind = ctrl+cmd+left=text:
+keybind = ctrl+cmd+right=text:
+
+# Zellij: scroll
+keybind = cmd+up=text:
+keybind = cmd+down=text:
+keybind = cmd+shift+up=text:
+keybind = cmd+shift+down=text:
+keybind = ctrl+shift+up=text:
+keybind = ctrl+shift+down=text:
