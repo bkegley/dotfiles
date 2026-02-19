@@ -13,7 +13,8 @@ ln -sf $path/.xinitrc $HOME/.xinitrc
 # ========
 # Git
 # ========
-ln -sf $path/.gitconfig $HOME/.gitconfig
+ln -sf $path/git/.gitconfig $HOME/.gitconfig
+ln -sf $path/git/.gitignore_global $HOME/.gitignore_global
 
 # ========
 # zsh

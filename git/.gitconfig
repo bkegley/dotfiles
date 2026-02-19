@@ -6,16 +6,17 @@
 	helper = cache
 
 [core]
-  pager = delta
+    pager = delta
+	excludesFile = /Users/bkegley/.gitignore_global
 
 [delta]
-  features = side-by-side line-numbers decorations
-  plus-style = syntax "#003800"
-  minus-style = syntax "#3f0001"
-  plus-color = "#012800"
-  minus-color = "#340001"
-  syntax-theme = Nord
-  line-numbers = true
+    features = side-by-side line-numbers decorations
+    plus-style = syntax "#003800"
+    minus-style = syntax "#3f0001"
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Nord
+    line-numbers = true
 
 [delta "decorations"]
     commit-decoration-style = bold cyan box ul
