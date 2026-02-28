@@ -3,3 +3,4 @@
 bash/.bash_local
 zsh/.zsh_local
 zellij/*.bak
+zellij/certs/

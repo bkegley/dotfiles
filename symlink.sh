@@ -25,10 +25,12 @@ symlink_dir "$DOTFILES/shell" "$HOME/.config/shell"
 symlink_dir "$DOTFILES/ghostty" "$HOME/.config/ghostty"
 symlink_dir "$DOTFILES/zellij" "$HOME/.config/zellij"
 symlink_dir "$DOTFILES/nvim" "$HOME/.config/nvim"
+symlink_dir "$DOTFILES/tmux" "$HOME/.config/tmux"
 symlink_dir "$DOTFILES/mise" "$HOME/.config/mise"
 
 # Files
 symlink_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+[ -f "$DOTFILES/zsh/.zsh_local" ] && symlink_file "$DOTFILES/zsh/.zsh_local" "$HOME/.zsh_local"
 symlink_file "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 symlink_file "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
 symlink_file "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"

@@ -301,11 +301,11 @@ disable_session_metadata true
 // A path to a certificate file to be used when setting up the web client to serve the
 // connection over HTTPs
 // 
-// web_server_cert "/path/to/cert.pem"
+web_server_cert "/Users/bkegley/.config/zellij/certs/cert.pem"
 // A path to a key file to be used when setting up the web client to serve the
 // connection over HTTPs
-// 
-// web_server_key "/path/to/key.pem"
+//
+web_server_key "/Users/bkegley/.config/zellij/certs/key.pem"
 /// Whether to enforce https connections to the web server when it is bound to localhost
 /// (127.0.0.0/8)
 ///
