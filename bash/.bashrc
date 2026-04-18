@@ -24,3 +24,4 @@ eval "$(starship init bash)"
 
 complete -C /opt/homebrew/bin/terraform terraform
 . "$HOME/.cargo/env"
+. "/Users/bkegley/.deno/env"
