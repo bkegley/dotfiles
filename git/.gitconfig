@@ -11,6 +11,12 @@
 
 [delta]
     features = side-by-side line-numbers decorations
+    # Skip the OSC 10/11 terminal background probe. Without this delta races
+    # with less for the terminal and leaks its query reply (/0000/0000ESC\)
+    # onto less's status line, eating the first keypress. Setting dark
+    # explicitly disables the probe.
+    dark = true
+    detect-dark-light = never
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"
     plus-color = "#012800"
