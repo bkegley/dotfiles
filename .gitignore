@@ -4,3 +4,8 @@ bash/.bash_local
 zsh/.zsh_local
 zellij/*.bak
 zellij/certs/
+zellij/layouts.local/*
+!zellij/layouts.local/.gitkeep
+nvim/undodir/
+nvim/lazy-lock.json.bak
+mise/config.local.toml
