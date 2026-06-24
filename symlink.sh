@@ -34,6 +34,9 @@ symlink_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 symlink_file "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 symlink_file "$DOTFILES/git/.gitignore_global" "$HOME/.gitignore_global"
 symlink_file "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+# herdr: only config.toml is tracked; the dir also holds logs/sockets/sessions
+mkdir -p "$HOME/.config/herdr"
+symlink_file "$DOTFILES/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 
 # === macOS ===
 if [ "$PLATFORM" = "Darwin" ]; then
