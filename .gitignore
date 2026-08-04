@@ -9,3 +9,7 @@ zellij/layouts.local/*
 nvim/undodir/
 nvim/lazy-lock.json.bak
 mise/config.local.toml
+
+# Machine-local crucible overrides. crucible.js requires this only when it
+# exists (a missing require() would abort the whole plan).
+crucible.local.js
