@@ -34,9 +34,9 @@ return {
       },
     },
     git = {
-      commits = { preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS" },
-      bcommits = { preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS" },
-      status = { preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS" },
+      commits = { preview_pager = "git-delta --width=$FZF_PREVIEW_COLUMNS" },
+      bcommits = { preview_pager = "git-delta --width=$FZF_PREVIEW_COLUMNS" },
+      status = { preview_pager = "git-delta --width=$FZF_PREVIEW_COLUMNS" },
     },
   },
 }

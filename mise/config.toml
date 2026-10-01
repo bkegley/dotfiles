@@ -6,7 +6,7 @@ bun = "latest"
 fzf = "latest"
 "github:BurntSushi/ripgrep" = "latest"
 "github:cli/cli" = "latest"
-"github:dandavison/delta" = "latest"
+"github:dandavison/delta" = { version = "latest", rename_exe = "git-delta" }
 "github:macos-fuse-t/fuse-t" = "latest"
 "github:neovim/neovim" = "0.11.6"
 "github:rclone/rclone" = "latest"

@@ -6,7 +6,7 @@
 	helper = cache
 
 [core]
-    pager = delta
+    pager = git-delta
 	excludesFile = /Users/bkegley/.gitignore_global
 
 [delta]
