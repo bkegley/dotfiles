@@ -11,5 +11,11 @@ return {
     float = {
       padding = 4,
     },
+    keymaps = {
+      ["q"] = "actions.close",
+      ["<Esc>"] = "actions.close",
+      ["<C-v>"] = "actions.select_vsplit",
+      ["<C-s>"] = "actions.select_split",
+    },
   },
 }
