@@ -1,6 +1,6 @@
 #!/usr/bin/env crucible
 //
-// Entry point. Lives in ~/repos/personal/dotfiles once reviewed.
+// Entry point. Lives in ~/src/github.com/bkegley/dotfiles once reviewed.
 // Replaces symlink.sh and the empty scripts/{brew,setup}.sh stubs.
 //
 // Run from the dotfiles directory:

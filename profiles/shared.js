@@ -136,8 +136,8 @@ module.exports = (c) => {
     // Symlink targets are stored verbatim, so they must be absolute or
     // home-relative — a bare "nvim" would dangle. Verified: expandPath() turns
     // a leading "~/" into the target dir for BOTH path and target, so the
-    // "~/repos/..." form below resolves correctly and stays username-agnostic.
-    const dots = "~/repos/personal/dotfiles";
+    // "~/src/..." form below resolves correctly and stays username-agnostic.
+    const dots = "~/src/github.com/bkegley/dotfiles";
 
     // Umbrella directories
     c.symlink("~/.config/shell", { target: `${dots}/shell` });
