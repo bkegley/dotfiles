@@ -16,3 +16,5 @@ for f in ~/.config/shell/apps/*.sh; do source "$f"; done
 eval "$(starship init zsh)"
 
 [[ -f ~/.zsh_local ]] && source ~/.zsh_local
+
+. "$HOME/.local/bin/env"

@@ -179,7 +179,7 @@ agent_panel_scope = "all"
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
-# resume_agents_on_restore = false
+resume_agents_on_restore = true
 
 [experimental]
 # Allow launching herdr from inside a herdr-managed pane.
@@ -188,7 +188,7 @@ agent_panel_scope = "all"
 # Requires a Kitty graphics-compatible outer terminal.
 # kitty_graphics = false
 # Save recent pane screen history across full server restarts.
-pane_history = false
+pane_history = true
 # Expose the focused pane's cursor to the outer terminal so macOS input
 # methods keep tracking the candidate window when TUIs paint their own
 # cursor (Claude Code, pi, codex). Trade-off: extra cursor visible for

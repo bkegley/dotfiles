@@ -122,9 +122,6 @@ module.exports = (c) => {
         // support removal, so this actively uninstalls it. Drop this line if you
         // would rather just leave it installed and stop managing it.
         c.brew(["logseq"], { state: "absent" });
-
-        // docker (the old cask) duplicates docker-desktop.
-        c.brew(["docker"], { state: "absent" });
     }
 
     // -----------------------------------------------------------------------
