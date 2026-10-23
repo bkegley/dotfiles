@@ -19,6 +19,7 @@ return {
         "terraformls",
         "svelte",
         "biome",
+        "marksman",
       },
     },
   },
@@ -56,6 +57,13 @@ return {
         terraformls = {},
         svelte = {},
         biome = {},
+        marksman = {
+          root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            local root = vim.fs.root(fname, { ".marksman.toml", ".git" })
+            on_dir(root or vim.fs.dirname(fname))
+          end,
+        },
       }
 
       for server, config in pairs(servers) do
