@@ -115,6 +115,7 @@ module.exports = (c) => {
             "cursor",
             "ollama",
             "zed",
+            "anomalyco/tap/hex", // local voice dictation
         ]);
 
         // NOT WANTED — logseq.
