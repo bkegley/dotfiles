@@ -94,7 +94,7 @@ module.exports = (c) => {
     // -----------------------------------------------------------------------
     // Punted — see TODO.md. Provenance unconfirmed, so no declaration yet.
     // -----------------------------------------------------------------------
-    // bunyan, herdr, cass, tunl, plannotator, container-use/cu,
+    // bunyan, cass, tunl, plannotator, container-use/cu,
     // temporal/temporal-service, goose, and the bun-global pa/qmd/sc.
     //
     // Several are almost certainly your own repos, which want

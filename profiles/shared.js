@@ -15,10 +15,6 @@ module.exports = (c) => {
     c.dir("~/.local/bin", { mode: 0o755 });
     c.dir("~/.ssh", { mode: 0o700 });
 
-    // herdr: only config.toml is tracked — the dir also holds logs, sockets,
-    // and sessions, so symlink the file and let the dir stay real.
-    c.dir("~/.config/herdr", { mode: 0o755 });
-
     // -----------------------------------------------------------------------
     // Homebrew — libraries, compiled deps, system integration
     // -----------------------------------------------------------------------
@@ -153,7 +149,6 @@ module.exports = (c) => {
     c.symlink("~/.gitconfig", { target: `${dots}/git/.gitconfig` });
     c.symlink("~/.gitignore_global", { target: `${dots}/git/.gitignore_global` });
     c.symlink("~/.config/starship.toml", { target: `${dots}/starship/starship.toml` });
-    c.symlink("~/.config/herdr/config.toml", { target: `${dots}/herdr/config.toml` });
 
     // macOS-only. Note the source dir is misspelled "karibener" in the repo.
     if (darwin) {
